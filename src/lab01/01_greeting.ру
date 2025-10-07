@@ -1,10 +1,5 @@
-<<<<<<< HEAD
-name = input("Имя: ")
 
-age = int(input("Возраст: "))
-
-=======
 name = input("Имя: ")
 age = int(input("Возраст: "))
->>>>>>> c7a861f7831b797adce2eb0bbbc78fc37cb1badb
+
 print(f"Привет, {name}! Через год тебе будет {age + 1}.")
