@@ -112,19 +112,19 @@ markdown
 - `arrays.py` - функции для работы со списками
 - `matrix.py` - функции для работы с матрицами  
 - `tuples.py` - форматирование записей студентов
-- `demo.py` - запуск всех программ вместе
+
 
 ## Как запустить программы
 
-Открываю терминал и пишу:
+**Открываю терминал и пишу:**
 ```bash
 python arrays.py
 python matrix.py  
 python tuples.py
-python demo.py
-Или можно запустить только demo.py чтобы увидеть всё сразу.
 
-Что делает каждая программа
+```
+
+**Что делает каждая программа**
 arrays.py
 min_max() - находит самый маленький и самый большой элемент в списке
 
@@ -142,30 +142,64 @@ col_sums() - считает сумму чисел в каждом столбце
 tuples.py
 format_record() - красиво форматирует информацию о студенте в строку
 
-Примеры работы программ
-text
-min_max([3, -1, 5, 5, 0]) = (-1, 5)
-unique_sorted([3, 1, 2, 1, 3]) = [1, 2, 3]  
-format_record(("Иванов Иван", "BIVT-25", 4.6)) = "Иванов И., гр. BIVT-25, GPA 4.60"
-Что у меня получилось
-Все программы работают правильно и выдают нужные ответы. Я проверял на примерах из задания и всё совпадает. Было интересно работать с матрицами - это как таблицы в программе.
+**Примеры работы программ**
+***тест arrays.py***
+```
+if __name__ == "__main__":
+    print("=== Проверка arrays.py ===")
+    
+    # Тестируем min_max
+    test1 = [3, -1, 5, 5, 0]
+    print(f"min_max({test1}) = {min_max(test1)}")
+    
+    # Тестируем unique_sorted
+    test2 = [3, 1, 2, 1, 3]
+    print(f"unique_sorted({test2}) = {unique_sorted(test2)}")
+    
+    # Тестируем flatten
+    test3 = [[1, 2], [3, 4]]
+    print(f"flatten({test3}) = {flatten(test3)}")
+```
+**Вывод**
+**результаты arrays.py:**
+![alt text](images/lab02/arrays.png)
 
-Скриншоты
-В папке images/lab02 лежат скриншоты как работают мои программы:
+***тест matrix.ru:***
+```
+if __name__ == "__main__":
+    print("=== Проверка matrix.py ===")
+    
+    test_matrix = [[1, 2, 3], [4, 5, 6]]
+    print(f"Матрица: {test_matrix}")
+    print(f"Транспонированная: {transpose(test_matrix)}")
+    print(f"Суммы строк: {row_sums(test_matrix)}")
+    print(f"Суммы столбцов: {col_sums(test_matrix)}")
+```
+**Вывод**
+**результаты matrix.py:**
+![alt text](images/lab02/matrix.png)
+***тест tuples.ru :***
+```
+if __name__ == "__main__":
+    print("=== Проверка tuples.py ===")
+    
+    students = [
+        ("Мустафаев Сухроб Мухаммадович ", "BIVT-25-4", 4.6),
+        ("Рустамов Руслан Какоевич", "BIVT-25-20", 5.0),
+        (" Абдухакимов Шахзод Дийорович ", "ABB-01", 3.999),
+    ]
+    
+    for student in students:
+        formatted = format_record(student)
+        print(f"{student} -> {formatted}")
+```
+**Вывод**
+**tuples_result.png - результаты tuples.py:**
+![alt text](images/lab02/tuples.png)
 
-arrays_result.png - результаты arrays.py
-
-matrix_result.png - результаты matrix.py
-
-tuples_result.png - результаты tuples.py
-
-demo_result.png - общий результат
-
+Все программы работают правильно и выдают нужные ответы. Я проверял на примерах из задания и всё совпадает.
 Студент
 Мустафаев Сухроб Мухаммадович
 
 Группа
 БИВТ-25-4
-
-Преподаватель
-
