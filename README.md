@@ -264,3 +264,5 @@ echo "Привет, мир! Привет!!!" | python src/lab03/text_stats.py
 мир:1
 ```
 ![alt text](images/lab03/text_stats_test.png)
+Студент: Мустафаев Сухроб Мухаммадович
+Группа: БИВТ-25
