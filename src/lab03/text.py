@@ -6,6 +6,7 @@ def normalize(text: str, *, casefold: bool = True, yo2e: bool = True) -> str:
     if casefold:
         text = text.casefold()
     
+
     if yo2e:
         text = text.replace('ё', 'е').replace('Ё', 'Е')
     
@@ -43,5 +44,5 @@ if __name__ == "__main__":
     
     freq2 = count_freq(["bb","aa","bb","aa","cc"])
     assert top_n(freq2, 2) == [("aa",2), ("bb",2)]
-    
+    # как то так 
     print("Все сделано ")
