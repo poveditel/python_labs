@@ -295,6 +295,33 @@ python src/lab04/text_report.py --encoding cp1251
 
 **Что делает каждая программа**
 ***io_txt_csv.py***
+```py
+import csv
+from pathlib import Path
+
+def read_text(path, encoding="utf-8"):
+    """Читает файл и возвращает текст"""
+    file_path = Path(path)
+    return file_path.read_text(encoding=encoding)
+
+def write_csv(rows, path, header=None):
+    """Записывает данные в CSV файл"""
+    file_path = Path(path)
+    
+    if rows:
+        first_length = len(rows[0])
+        for row in rows:
+            if len(row) != first_length:
+                raise ValueError("Все строки должны быть одинаковой длины")
+    
+    file_path.parent.mkdir(parents=True, exist_ok=True)
+    
+    with file_path.open('w', newline='', encoding='utf-8') as f:
+        writer = csv.writer(f)
+        if header:
+            writer.writerow(header)
+        writer.writerows(rows)
+```
 
 -  `read_text()` - читает текстовый файл в указанной кодировке
 
@@ -303,6 +330,50 @@ python src/lab04/text_report.py --encoding cp1251
 - `ensure_parent_dir()` - создает папки если их нет
 
 ***`text_report.py***
+```py
+from collections import Counter
+import sys
+from pathlib import Path
+
+sys.path.append(str(Path(__file__).parent.parent))
+
+from lab03.text import normalize, tokenize
+from lab04.io_txt_csv import read_text, write_csv
+
+def main():
+    input_file = "data/lab04/input.txt"
+    output_file = "data/lab04/report.csv"
+    
+    try:
+        text = read_text(input_file)
+    except FileNotFoundError:
+        print(f"Ошибка: файл {input_file} не найден")
+        return
+    
+    normal_text = normalize(text)
+    words = tokenize(normal_text)
+    
+    word_count = Counter(words)
+    
+    sorted_words = sorted(word_count.items(), key=lambda x: (-x[1], x[0]))
+    
+    rows = [(word, count) for word, count in sorted_words]
+    write_csv(rows, output_file, header=("word", "count"))
+    
+    total_words = len(words)
+    unique_words = len(word_count)
+    top_5 = sorted_words[:5]
+    
+    print(f"Всего слов: {total_words}")
+    print(f"Уникальных слов: {unique_words}")
+    print("Топ-5:")
+    for word, count in top_5:
+        print(f"{word}:{count}")
+
+if __name__ == "__main__":
+    main()
+
+```
 
 - Читает текст из data/lab04/input.txt
 
