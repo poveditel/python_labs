@@ -30,7 +30,7 @@ def flatten(mat):
     result = []
     
     for element in mat:
-        if not isinstance(element, (list, tuple)):
+        if not isinstance(element, [list, tuple]):
             raise TypeError("Нужен список или кортеж")
         
         for item in element:
