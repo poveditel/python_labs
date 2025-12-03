@@ -15,7 +15,7 @@ def min_max(nums):
 
 def unique_sorted(nums):
     if len(nums) == 0:
-        return []
+        raise ValueError("Список пустой")
     
     unique_list = []
     for num in nums:

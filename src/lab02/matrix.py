@@ -2,7 +2,7 @@
 
 def transpose(mat):
     if len(mat) == 0:
-        return []
+        raise ValueError("Пустая строка")
     
     # Проверяем что все строки одинаковые
     row_len = len(mat[0])
