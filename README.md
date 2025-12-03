@@ -1,448 +1,605 @@
-<<<<<<< HEAD
-# Лабораторная работа №1
-# Ввод/вывод и форматирование в Python
-
-# Цель работы:
-Освоить базовые операции ввода-вывода данных, работу с различными типами переменных и форматирование вывода в Python.
-
-# Задание 1: Приветствие и возраст
-
-**Файл:** `src/01_greeting.py`  
-
-**Цель:** Работа со строками и целыми числами, конкатенация строк.
-
-**Ввод:**
-- Имя (строка)
-- Возраст (целое число)
-
-**Вывод:**
-![alt text](images/lab01/imag01.png)
-
-**Пример:**
-Имя: Алиса
-Возраст: 19
-Привет, Алиса! Через год тебе будет 20.# Задание 2: Сумма и среднее арифметическое
-
-**Файл:** `src/02_sum_avg.py`  
-
-**Цель:** Работа с вещественными числами, форматирование вывода.
-
-**Ввод:**
-- Два вещественных числа (поддерживаются точка и запятая)
-
-**Вывод:**
-![alt text](images/lab01/imag02.png)
-
-**Пример:**
-a: 3,5
-b: 4.25
-sum=7.75; avg=3.88#   Задание 3: Расчет чека со скидкой и НДС
-
-**Файл:** `src/03_discount_vat.py`  
-
-**Цель:** Применение математических формул, сложное форматирование вывода.
-
-**Формулы:**
-- `base = price * (1 - discount/100)`
-- `vat_amount = base * (vat/100)`
-- `total = base + vat_amount`
-
-**Ввод:**
-- Цена (вещественное)
-- Скидка (%) (вещественное)
-- НДС (%) (вещественное)
-
-**Вывод:**
-![alt text](images/lab01/imag03.png)
-
-**Пример:**
-price (₽): 1000
-discount (%): 10
-vat (%): 20#   Задание 4: Конвертер минут в часы и минуты
-
-**Файл:** `src/04_minutes_to_hhmm.py`  
-
-**Цель:** Работа с целочисленным делением, форматирование времени.
-
-**Ввод:**
-- Минуты (целое число)
-
-**Вывод:**
-![alt text](images/lab01/imag04.png)
-
-**Пример:**
-Минуты: 135
-2:15
-
-#   Задание 5: Инициалы и длина строки
-
-
-**Файл:** `src/05_initials_and_len.py`
- 
-**Цель:** Работа со строками, методами строк, форматирование.
-
-**Ввод:**
-
- ФИО одной строкой (могут быть лишние пробелы)
-
-**Вывод:**
-
-![alt text](images/lab01/imag05.png)
-
-
-**Пример:**
-
-ФИО: Mustafaev Suhrob Muhammadovich
-Инициалы: MSM.
-Длина (символов): 30
-
-**Студент:** Мустафаев Сухроб Мухаммадович  
-**Группа:** [БИВТ-25-4]  
-**Преподаватель:** [Жураковский К.В]
-
-
-# Лабораторная работа №2
-# Коллекции и матрицы
-
-## Что я сделал
-
-Я написал программы для работы со списками, матрицами и кортежами на Python. Это моя вторая лабораторная работа, где я учился работать с разными типами коллекций.
-
-## Файлы которые я создал
-
-- `arrays.py` - функции для работы со списками
-- `matrix.py` - функции для работы с матрицами  
-- `tuples.py` - форматирование записей студентов
-
-
-## Как запустить программы
-
-**Открываю терминал и пишу:**
-```bash
-python arrays.py
-python matrix.py  
-python tuples.py
-
+# ЛАБОРАТОРНАЯ РАБОТА 1
+## Задание 1
+``` python
+name = input("Имя: ")
+age = int(input("Возраст: "))
+print(f"Привет, {name}! Через год тебе будет {age + 1}."
 ```
-## Что делает каждая программа
-**arrays.py :**
--`min_max()` - находит самый маленький и самый большой элемент в списке
+- скрин вывода - 
+![img01](https://github.com/Ladoslaff/python_labs/blob/main/images/lab01/img01.png)
 
--`unique_sorted()` - убирает повторяющиеся элементы и сортирует по возрастанию
+## Задание 2
+``` python
+num1 = float(input("a: "))
+num2 = float(input("b: "))
+sum = num1 + num2 
+avg = sum/2
+print(f"sum = {sum:.2f}", ";", f"avg={avg:.2f}")
+```
+- скрин вывода - 
+![img02](https://github.com/Ladoslaff/python_labs/blob/main/images/lab01/img02.png)
 
--`flatten()` - делает из списка списков один большой список
+## Задание 3
+``` python
+price = float(input("Введите цену = "))
+discount = float(input("Скидка = "))
+vat = float(input("НДС = "))
+base = price * (1 - discount/100)
+vat_amount = base * (vat/100)
+total = base + vat_amount
+print(f"База после скидки: {base:.2f} ₽")
+print(f"НДС: {vat_amount:.2f} ₽")
+print(f"Итого к оплате: {total:.2f} ₽")
+```
+- скрин вывода - 
+![img03](https://github.com/Ladoslaff/python_labs/blob/main/images/lab01/img03.png)
 
-**matrix.py :**
--`transpose()` - меняет строки и столбцы местами в матрице
+## Задание 4
+``` python
+minuts = int(input("Введите кол-во минут = "))
+h = minuts//60
+mm = minuts%60
+print(f"{h}:{mm:02d}")
+```
+- скрин вывода - 
+![img04](https://github.com/Ladoslaff/python_labs/blob/main/images/lab01/img04.png)
 
--`row_sums()` - считает сумму чисел в каждой строке
+## Задание 5
+``` python
+fio = input("Введите ФИО ").split()
+print("Инициалы = ", fio[0][0], fio[1][0], fio[2][0], sep = '')
+print(len(fio[0] + fio[1] + fio[2])+2)
+```
+- скрин вывода - 
+![img05](https://github.com/Ladoslaff/python_labs/blob/main/images/lab01/img05.png)
 
--`col_sums()` - считает сумму чисел в каждом столбце
 
-**tuples.py :**
--`format_record()` - красиво форматирует информацию о студенте в строку
+# ЛАБОРАТОРНАЯ РАБОТА 2
 
-**Примеры работы программ**
-***тест arrays.py***
-```bash
-if __name__ == "__main__":
-    print("=== Проверка arrays.py ===")
+
+## Задание 1
+``` python
+def min_max(nums):
+    if len(nums) == 0:
+        raise ValueError
+    mini = min(nums)
+    maxi = max(nums)
+    return (mini, maxi)
+nums = [3, -1, 5, 5, 0] 
+print(min_max(nums))
+nums = [42]
+print(min_max(nums))
+nums = [-5, -2, -9]
+print(min_max(nums))
+nums = [1.5, 2, 2.0, -3.1]
+print(min_max(nums))
+nums = []
+print(min_max(nums))
+```
+- скрин вывода -
+![img01](https://github.com/Ladoslaff/python_labs/blob/main/images/lab02/img01.png)
+
+
+
+``` python
+def unique_sorted(nums):
+    nums = sorted(set(nums))
+    return nums
+nums = [3, 1, 2, 1, 3]
+print(unique_sorted(nums))
+nums = []
+print(unique_sorted(nums))
+nums = [-1, -1, 0, 2, 2]
+print(unique_sorted(nums))
+nums = [1.0, 1, 2.5, 2.5, 0]
+print(unique_sorted(nums))
+```
+- скрин вывода -
+![img02](https://github.com/Ladoslaff/python_labs/blob/main/images/lab02/img02.png)
+
+
+``` python
+def flatten(nums):
+    otvetik = []
+    for e in nums:
+        if type(e) == list or type(e) == tuple:
+            for i in range(len(e)):
+                if e[i] != '':
+                    otvetik.append(e[i])
+        else:
+            raise TypeError
+    return otvetik
+nums = [[1, 2], [3, 4]]
+print(flatten(nums))
+nums = [[1, 2], (3, 4, 5)]
+print(flatten(nums))
+nums = [[1], [], [2, 3]]
+print(flatten(nums))
+nums = [[1, 2], "ab"]
+print(flatten(nums))
+```
+- скрин вывода -
+![img03](https://github.com/Ladoslaff/python_labs/blob/main/images/lab02/img03.png)
+
+
+## Задание 2
+``` python
+def transpose(mat):
+    if not mat:
+        return []
+    row_length = len(mat[0])
+    for row in mat:
+        if len(row) != row_length:
+            raise ValueError
+    result = []
+    for col_index in range(len(mat[0])):
+        new_row = []
+        for row in mat:
+            new_row.append(row[col_index])
+        result.append(new_row)
+    return result
+```
+- скрин вывода -
+![img04](/images/lab02/img04.png)
+
+
+
+``` python
+def row_sums(l):
+    new_l = []
+    if len(l) == 0:
+        return new_l
+    for i in range(len(l) - 1):
+        if len(l[i]) != len(l[i+1]):
+            raise TypeError
+    for i in l:
+        new_l.append(sum(i))
+    return new_l
+nums = [[1, 2, 3], [4, 5, 6]]
+print(row_sums(nums))
+nums = [[-1, 1], [10, -10]]
+print(row_sums(nums))
+nums = [[0, 0], [0, 0]]
+print(row_sums(nums))
+nums = [[1, 2], [3]]
+print(row_sums(nums))
+```
+- скрин вывода -
+![img05](/images/lab02/img05.png)
+
+
+
+
+``` python
+def col_sums(l):
+    new_l = []
+    if len(l) == 0:
+        return new_l
+    for i in range(len(l) - 1):
+        if len(l[i]) != len(l[i+1]):
+            raise TypeError
+    for i in range(len(l)-1):
+        for j in range(len(l[1])):
+            new_l.append(l[i][j] + l[i+1][j])
+    return new_l
+nums = [[1, 2, 3], [4, 5, 6]]
+print(col_sums(nums))
+nums = [[-1, 1], [10, -10]]
+print(col_sums(nums))
+nums = [[0, 0], [0, 0]]
+print(col_sums(nums))
+nums = [[1, 2], [3]]
+print(col_sums(nums))
+```
+- скрин вывода -
+![img06](/images/lab02/img06.png)
+
+
+
+## Задание 3
+
+``` python
+def format_record(rec):
+    fio, group, gpa = rec
+    if not fio or not fio.strip():
+        raise ValueError("ФИО не может быть пустым")
+    if not group or not group.strip():
+        raise ValueError("Группа не может быть пустой")
+    if not isinstance(gpa, (int, float)):
+        raise TypeError("GPA должен быть числом")
+    fio_clean = ' '.join(fio.split())  # минус лишние пробелы
+    fio_clean = fio_clean.title()      # первые буквы заглавнык
+    parts = fio_clean.split()
+    surname = parts[0] 
+    initials = []
+    for name in parts[1:]:  
+        if name:  
+            initials.append(name[0] + '.')  
+    if initials:
+        formatted_fio = surname + ' ' + ''.join(initials)
+    else:
+        formatted_fio = surname
+    formatted_gpa = f"{gpa:.2f}"
+    result = f"{formatted_fio}, гр. {group}, GPA {formatted_gpa}"
+    return result
+print(format_record(("Иванов Иван Иванович", "BIVT-25", 4.6)))
+print(format_record(("Петров Петр", "IKBO-12", 5.0)))
+print(format_record(("Петров Петр Петрович", "IKBO-12", 5.0)))
+print(format_record((" сидорова айна сергеевна ", "ABB-01", 3.999)))
+print(format_record(("  ", "", )))
+```
+- скрин вывода -
+![img07](/images/lab02/img07.png)
+
+# ЛАБОРАТОРГАЯ РАБОТА 3
+## Задание 1
+```python
+def normalize(text, *, casefold=True, yo2e=True):
+    result = text
+    if casefold:
+        result = result.casefold()
     
-    # Тестируем min_max
-    test1 = [3, -1, 5, 5, 0]
-    print(f"min_max({test1}) = {min_max(test1)}")
-    
-    # Тестируем unique_sorted
-    test2 = [3, 1, 2, 1, 3]
-    print(f"unique_sorted({test2}) = {unique_sorted(test2)}")
-    
-    # Тестируем flatten
-    test3 = [[1, 2], [3, 4]]
-    print(f"flatten({test3}) = {flatten(test3)}")
+    if yo2e:
+        result = result.replace('ё', 'е')
+        result = result.replace('Ё', 'е')
+    result = result.replace('\t', ' ')
+    result = result.replace('\n', ' ')
+    result = result.replace('\r', ' ')
+    words = result.split()
+    result = ' '.join(words)
+    return result
+print(normalize("ПрИвЕт\nМИр\t"))
+print(normalize("ёжик, Ёлка"))
+print(normalize("Hello\r\nWorld"))
+print(normalize("  двойные   пробелы  "))
 ```
-**Вывод**
-**результаты arrays.py:**
-![alt text](images/lab02/arrays.png)
+- скрин вывода -
+![img01](/images/lab03/img01.png)
 
-***тест matrix.ru:***
-```bash
-if __name__ == "__main__":
-    print("=== Проверка matrix.py ===")
-    
-    test_matrix = [[1, 2, 3], [4, 5, 6]]
-    print(f"Матрица: {test_matrix}")
-    print(f"Транспонированная: {transpose(test_matrix)}")
-    print(f"Суммы строк: {row_sums(test_matrix)}")
-    print(f"Суммы столбцов: {col_sums(test_matrix)}")
+
+
+```python
+def tokenize(text):
+    pattern = r'\w+(?:-\w+)*'
+    tokens = re.findall(pattern, text)
+    return tokens
+print(tokenize("привет мир"))
+print(tokenize("hello,world!!!"))
+print(tokenize("по-настоящему круто" ))
+print(tokenize("2025 год"))
+print(tokenize("emoji 😀 не слово"))
 ```
-**Вывод**
-**результаты matrix.py:**
-![alt text](images/lab02/matrix.png)
-***тест tuples.ru :***
-```bash
-if __name__ == "__main__":
-    print("=== Проверка tuples.py ===")
-    
-    students = [
-        ("Мустафаев Сухроб Мухаммадович ", "BIVT-25-4", 4.6),
-        ("Рустамов Руслан Какоевич", "BIVT-25-20", 5.0),
-        (" Абдухакимов Шахзод Дийорович ", "ABB-01", 3.999),
-    ]
-    
-    for student in students:
-        formatted = format_record(student)
-        print(f"{student} -> {formatted}")
+- скрин вывода -
+![img02](/images/lab03/img02.png)
+
+
+
+
+```python
+def count_freq(tokens):
+    freq = {}
+    for token in tokens:
+        if token in freq:
+            freq[token] += 1
+        else:
+            freq[token] = 1
+    return freq
+
+def top_n(freq, n=5):
+    items = list(freq.items())
+    items.sort(key=lambda x: (-x[1], x[0])) # - x[1] - это частота слова. -x[1] - минус делает сортировку по убыванию. x[0] - сортировка по возрастанию (А→Я)
+    top_items = items[:n]
+    return top_items
+tokens = ["a", "b", "a", "c", "b", "a"]
+freq = count_freq(tokens)
+top = top_n(freq, 2)
+
+print(f"Слова: {tokens}")
+print(f"Частоты: {freq}") 
+print(f"Топ-2: {top}")
 ```
-**Вывод**
-**tuples_result.png - результаты tuples.py:**
-![alt text](images/lab02/tuples.png)
+- скрин вывода -
+![img03](/images/lab03/img03.png)
 
-Все программы работают правильно и выдают нужные ответы. Я проверял на примерах из задания и всё совпадает.
-Студент
-Мустафаев Сухроб Мухаммадович
-
-Группа
-БИВТ-25-4
-
-
-
-# Лабораторная работа 
-# Тексты и частоты слов
-
-## Что я сделал
-
-Я написал программы для работы с текстом на Python. Это моя третья лабораторная работа, где я учился нормализовать текст, разбивать на слова и считать статистику.
-
-## Файлы которые я создал
-
-- `src/lib/text.py` - функции для работы с текстом
-- `src/lab03/text_stats.py` - скрипт для анализа текста
-
-## Как запустить программы
-
-**Открываю терминал и пишу:**
-```bash
-python src/lib/text.py
-python src/lab03/text_stats.py
+## Задание 2
+``` python
+from text import normalize, tokenize, count_freq, top_n
+text = input("Введите текст: ")
+normalized_text = normalize(text)
+tokens = tokenize(normalized_text)
+freq_dict = count_freq(tokens)
+top_words = top_n(freq_dict, 5)
+print(f"Всего слов: {len(tokens)}")
+print(f"Уникальных слов: {len(freq_dict)}")
+print("Топ-5:")
+for word, count in top_words:
+    print(f"{word}:{count}")
 ```
-## Что делает каждая программа
+- скрин вывода -
+![img04](/images/lab03/img04.png)
 
-**text.py :**
--`normalize()` - приводит текст к нижнему регистру, убирает лишние пробелы
--`tokenize()` - разбивает текст на отдельные слова
--`count_freq()` - считает сколько раз встречается каждое слово
--`top_n()` - находит самые частые слова
-
-**text_stats.py :**
--Читает текст из консоли
--Показывает общую статистику
--Выводит топ-5 самых частых слов
-# Примеры работы программ
-**Тестирование модуля text.py :**
-
-```bash
-python src/lib/text.py
-```
-**Вывод :**
-```
-Все тесты пройдены!
-```
-![alt text](images/lab03/text_test.png)
-
-
-## Тестирование модуля text_stats.py
-```bash
-echo "Привет, мир! Привет!!!" | python src/lab03/text_stats.py
-```
-**Вывод:**
-```
-Всего слов: 3
-Уникальных слов: 2
-Топ-5:
-привет:2
-мир:1
-```
-![alt text](images/lab03/text_stats_test.png)
-Студент: Мустафаев Сухроб Мухаммадович
-Группа: БИВТ-25
-# ЛР4 — Файлы: TXT/CSV и отчёты по текстовой статистике
-
-## Что я сделал
-
-Я написал программы для чтения текстовых файлов, анализа текста и сохранения результатов в CSV формате. Это продолжение третьей лабораторной работы с добавлением работы с файлами.
-
-## Файлы которые я создал
-
-- `io_txt_csv.py` - функции для чтения текста и записи CSV
-- `text_report.py` - скрипт для анализа текста и генерации отчетов
-
-## Как запустить программы
-
-**Базовый запуск:**
-```bash
-python src/lab04/text_report.py
-```
-С указанием своих файлов (если добавить argparse):
-
-```bash
-python src/lab04/text_report.py --in data/my_text.txt --out data/my_report.csv
-```
-С другой кодировкой:
-
-```bash
-python src/lab04/text_report.py --encoding cp1251
-```
-
-**Что делает каждая программа**
-***io_txt_csv.py***
-```py
-import csv
+# ЛАБОРАТОРНАЯ РАБОТА 4
+## Задание 1
+``` python
 from pathlib import Path
+import csv
 
 def read_text(path, encoding="utf-8"):
-    """Читает файл и возвращает текст"""
     file_path = Path(path)
     return file_path.read_text(encoding=encoding)
 
 def write_csv(rows, path, header=None):
-    """Записывает данные в CSV файл"""
     file_path = Path(path)
+    rows_list = list(rows)
     
-    if rows:
-        first_length = len(rows[0])
-        for row in rows:
-            if len(row) != first_length:
-                raise ValueError("Все строки должны быть одинаковой длины")
+    if rows_list:
+        first_row_length = len(rows_list[0])
+        for i, row in enumerate(rows_list):
+            if len(row) != first_row_length:
+                raise ValueError(f"Строка {i} имеет другую длину")
     
-    file_path.parent.mkdir(parents=True, exist_ok=True)
-    
-    with file_path.open('w', newline='', encoding='utf-8') as f:
-        writer = csv.writer(f)
-        if header:
+    with file_path.open("w", newline="", encoding="utf-8") as file:
+        writer = csv.writer(file)
+        
+        if header is not None:
             writer.writerow(header)
-        writer.writerows(rows)
+        
+        for row in rows_list:
+            writer.writerow(row)
+
+def ensure_parent_dir(path):
+    file_path = Path(path)
+    file_path.parent.mkdir(parents=True, exist_ok=True)
 ```
-
--  `read_text()` - читает текстовый файл в указанной кодировке
-
-- `write_csv()` - записывает данные в CSV файл с заголовком
-
-- `ensure_parent_dir()` - создает папки если их нет
-
-***`text_report.py***
-```py
-from collections import Counter
+## Задание 2
+``` python
+from pathlib import Path
 import sys
+import os
+
+sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'lab03'))
+
+from text import normalize, tokenize, count_freq, top_n
+from io_txt_csv import read_text, write_csv, ensure_parent_dir
+
+def create_report(input_file="data/input.txt", output_file="data/report.csv", encoding="utf-8"):
+    try:
+        text = read_text(input_file, encoding)
+    except FileNotFoundError:
+        print(f"ОШИБКА: Файл {input_file} не найден!")
+        sys.exit(1)
+    except UnicodeDecodeError:
+        print(f"ОШИБКА: Не удалось прочитать файл в кодировке {encoding}!")
+        sys.exit(1)
+    
+    normalized_text = normalize(text)
+    tokens = tokenize(normalized_text)
+    freq_dict = count_freq(tokens)
+    top_words = top_n(freq_dict, 5)
+    
+    print(f"Всего слов: {len(tokens)}")
+    print(f"Уникальных слов: {len(freq_dict)}")
+    print("Топ-5:")
+    for word, count in top_words:
+        print(f"{word}:{count}")
+    
+    sorted_words = sorted(freq_dict.items(), key=lambda x: (-x[1], x[0]))
+    csv_data = []
+    for word, count in sorted_words:
+        csv_data.append([word, count])
+    
+    ensure_parent_dir(output_file)
+    write_csv(csv_data, output_file, header=("word", "count"))
+    print(f"Отчет сохранен в: {output_file}")
+
+if __name__ == "__main__":
+    create_report()
+```
+- скрин вывода - 
+![img01](/images/lab04/img01.png)
+
+# ЛАБОРАТОРНАЯ РАБОТА 5
+## Задание 1
+```python 
+import json
+import csv
 from pathlib import Path
 
-sys.path.append(str(Path(__file__).parent.parent))
+def json_to_csv(json_path: str, csv_path: str) -> None:
+    json_file = Path(json_path)
+    if not json_file.exists():
+        raise FileNotFoundError
+    
+    if json_file.suffix.lower() != '.json':
+        raise ValueError
+    
+    with open(json_path, 'r', encoding='utf-8') as f:
+        data = json.load(f)
+    
+    if not data:
+        raise ValueError
+    
+    fieldnames = list(data[0].keys())
+    
+    with open(csv_path, 'w', encoding='utf-8', newline='') as f:
+        writer = csv.DictWriter(f, fieldnames=fieldnames)
+        writer.writeheader()
+        for row in data:
+            writer.writerow({field: str(row.get(field, '')) for field in fieldnames})
+json_to_csv(f"data/samples/people.json", f"data/samples/people.csv")
 
-from lab03.text import normalize, tokenize
-from lab04.io_txt_csv import read_text, write_csv
+
+def csv_to_json(csv_path: str, json_path: str) -> None:
+    csv_file = Path(csv_path)
+    if not csv_file.exists():
+        raise FileNotFoundError
+    
+    if csv_file.suffix.lower() != '.csv':
+        raise ValueError
+    
+    with open(csv_path, 'r', encoding='utf-8') as f:
+        reader = csv.DictReader(f)
+        data = list(reader)
+    
+    if not data:
+        raise ValueError
+    
+    with open(json_path, 'w', encoding='utf-8') as f:
+        json.dump(data, f, ensure_ascii=False, indent=2)
+csv_to_json(f"data/samples/people.csv",f"data/samples/people.json")
+```
+- Скрины -
+![img01](/images/lab05/img01.png)
+![img04](/images/lab05/img04.png)
+
+## Задание 2
+``` python
+import csv
+import os
+from openpyxl import Workbook
+from openpyxl.utils import*
+
+
+def csv_to_xlsx(csv_path: str, xlsx_path: str) -> None:
+    if not os.path.exists(csv_path):
+        raise FileNotFoundError(f"Файл не найден: {csv_path}")
+    
+    if not csv_path.lower().endswith('.csv'):
+        raise ValueError("Входной файл должен иметь расширение .csv")
+    
+    if not xlsx_path.lower().endswith(".xlsx"):
+        raise ValueError("Выходной файл должен иметь расширение .xlsx")
+    
+    with open(csv_path, 'r', encoding='utf-8') as f:
+        reader = csv.reader(f)
+        rows = list(reader)
+    
+    if not rows:
+        raise ValueError("CSV-файл пуст")
+
+    wb = Workbook()
+    ws = wb.active
+    ws.title = "Sheet1"
+
+    for row in rows:
+        ws.append(row)
+
+    for i, col in enumerate(ws.columns, start=1):
+        max_length = 0
+        for cell in col:
+            if cell.value:
+                max_length = max(max_length, len(str(cell.value)))
+        ws.column_dimensions[get_column_letter(i)].width = max(max_length, 8)
+
+    wb.save(xlsx_path)
+csv_to_xlsx("data/samples/people_02.csv", "data/output.xlsx")
+```
+- Скрины -
+![img02](/images/lab05/img02.png)
+![img03](/images/lab05/img03.png)
+
+ # ЛАБОРАТОРНАЯ РАБОТА 6
+ ## Задание 1
+``` python
+import argparse
+import sys
+import os
+
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
+
+from lab03.text import normalize, tokenize, count_freq, top_n
+
+def cat(input_path, number_lines):
+    with open(input_path, 'r', encoding='utf-8') as file:
+        for i, line in enumerate(file, 1):
+            if number_lines:
+                print(f"{i}: {line}", end='')
+            else:
+                print(line, end='')
+
+def stats(input_text, n=5):
+    with open(input_text, 'r', encoding='utf-8') as f:
+        text = f.read()
+
+    tokens = tokenize(normalize(text))
+    freq = count_freq(tokens)
+    top_words = top_n(freq, n)
+
+    print(f"Топ-{n} самых частых слов:")
+    for word, count in top_words:
+        print(f"{word}: {count}")
 
 def main():
-    input_file = "data/lab04/input.txt"
-    output_file = "data/lab04/report.csv"
-    
-    try:
-        text = read_text(input_file)
-    except FileNotFoundError:
-        print(f"Ошибка: файл {input_file} не найден")
-        return
-    
-    normal_text = normalize(text)
-    words = tokenize(normal_text)
-    
-    word_count = Counter(words)
-    
-    sorted_words = sorted(word_count.items(), key=lambda x: (-x[1], x[0]))
-    
-    rows = [(word, count) for word, count in sorted_words]
-    write_csv(rows, output_file, header=("word", "count"))
-    
-    total_words = len(words)
-    unique_words = len(word_count)
-    top_5 = sorted_words[:5]
-    
-    print(f"Всего слов: {total_words}")
-    print(f"Уникальных слов: {unique_words}")
-    print("Топ-5:")
-    for word, count in top_5:
-        print(f"{word}:{count}")
+    parser = argparse.ArgumentParser(description="CLI-утилиты")
+    subparsers = parser.add_subparsers(dest="command")
+
+    cat_parser = subparsers.add_parser("cat", help="Вывести содержимое файла")
+    cat_parser.add_argument("--input", required=True, help="Путь к файлу")
+    cat_parser.add_argument("-n", action="store_true", help="Нумеровать строки")
+
+    stats_parser = subparsers.add_parser("stats", help="Анализы частрты слов")
+    stats_parser.add_argument("--input", required=True, help="Путь к файлу")
+    stats_parser.add_argument("--top", type=int, default=5, help="Кол-во слов в топе")
+
+    args = parser.parse_args()
+
+    if args.command == "cat":
+        cat(args.input, args.n)
+    elif args.command == "stats":
+        stats(args.input, args.top)
 
 if __name__ == "__main__":
     main()
-
 ```
+- Скрин вывода -
+![img01](/images/lab06/img01.png)
 
-- Читает текст из data/lab04/input.txt
+# Задание 2
+``` python
+import argparse
+import sys
+import os
 
-- Анализирует слова и их частоты
+# Добавляем путь для импорта
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
-- Сохраняет результат в data/lab04/report.csv
+from lab05.json_csv import json_to_csv, csv_to_json
+from lab05.csv_xlsx import csv_to_xlsx
 
-- Выводит статистику в консоль
+def main():
+    parser = argparse.ArgumentParser(description="Конвертеры данных")
+    subparsers = parser.add_subparsers(dest="command")
 
-Примеры работы
-Тест с обычным текстом:
-Входной файл data/lab04/input.txt:
+    p1 = subparsers.add_parser("json2csv")
+    p1.add_argument("--in", dest="input", required=True)
+    p1.add_argument("--out", dest="output", required=True)
 
-```bash
-Привет, мир! Привет!!!
+    p2 = subparsers.add_parser("csv2json")
+    p2.add_argument("--in", dest="input", required=True)
+    p2.add_argument("--out", dest="output", required=True)
+
+    p3 = subparsers.add_parser("csv2xlsx")
+    p3.add_argument("--in", dest="input", required=True)
+    p3.add_argument("--out", dest="output", required=True)
+
+    args = parser.parse_args()
+
+    os.makedirs("data/out", exist_ok=True) #это типа для результатов папка
+
+    if args.command == "json2csv":
+        json_to_csv(args.input, args.output)
+        print(f"Успешно: {args.input} -> {args.output}")
+    elif args.command == "csv2json":
+        csv_to_json(args.input, args.output)
+        print(f"Успешно: {args.input} -> {args.output}")
+    elif args.command == "csv2xlsx":
+        csv_to_xlsx(args.input, args.output)
+        print(f"Успешно: {args.input} -> {args.output}")
+
+if __name__ == "__main__":
+    main()
 ```
-Запуск:
+![img02](/images/lab06/img02.png)
+![img03](/images/lab06/img03.png)
 
-```bash
-python src/lab04/text_report.py
-```
-Вывод в консоль:
-
-```bash
-Всего слов: 3
-Уникальных слов: 2
-Топ-5:
-привет:2
-мир:1
-```
-Файл data/lab04/report.csv:
-
-```bash
-word,count
-привет,2
-мир,1
-```
-Тест с пустым файлом:
-Если **input.txt** пустой, в CSV запишется только заголовок:
-
-```bash
-word,count
-```
-Обработка ошибок:
-
-Если файл не найден: **Ошибка: файл data/lab04/input.txt не найден**
-
-Если неправильная кодировка: **Ошибка кодировки...**
-
-Скриншоты работы:
-![alt text](images/lab04/a.png)
-![alt text](images/lab04/b.png)
-
-Все программы работают правильно. Я проверил на разных текстах и кодировках - все функции выполняют свою задачу.
-
-Студент: Мустафаев Сухроб Мухаммадович
-Группа: БИВТ-25-4
-
-
-# ЛР5 — JSON и конвертации (JSON↔CSV, CSV→XLSX): Техническое задание 
-## Задание A 
-python
-
-[text](src/lab05/json_csv.py)
-![alt text](<images/lab05/image copy 4.png>) ![alt text](<images/lab05/image copy 5.png>) ![alt text](<images/lab05/image copy 6.png>)
-
-## Задание B
-
-[text](src/lab05/csv_xlsx.py)
-![alt text](images/lab05/image.png) ![alt text](<images/lab05/image copy.png>) ![alt text](<images/lab05/image copy 2.png>) ![alt text](<images/lab05/image copy 3.png>)
-
-#
+плпоалалдвао

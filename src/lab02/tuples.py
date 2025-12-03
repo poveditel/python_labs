@@ -1,44 +1,28 @@
-# tuples.py
-
 def format_record(rec):
-    if len(rec) != 3:
-        raise ValueError("Должно быть 3 элемента")
-    
     fio, group, gpa = rec
-    
-    # Убираем лишние пробелы
-    fio_clean = ' '.join(fio.split()).strip()
-    group_clean = group.strip()
-    
-    if fio_clean == "":
+    if not fio or not fio.strip():
         raise ValueError("ФИО не может быть пустым")
-    
-    # Разбиваем ФИО на части
+    if not group or not group.strip():
+        raise ValueError("Группа не может быть пустой")
+    if not isinstance(gpa, (int, float)):
+        raise TypeError("GPA должен быть числом")
+    fio_clean = ' '.join(fio.split())  # минус лишние пробелы
+    fio_clean = fio_clean.title()      # первые буквы заглавнык
     parts = fio_clean.split()
-    
-    # Формируем результат
-    result = parts[0]  # Фамилия
-    
-    # Добавляем инициалы
-    for i in range(1, len(parts)):
-        if len(parts[i]) > 0:
-            result += f" {parts[i][0].upper()}."
-    
-    # Форматируем GPA
-    gpa_str = f"{gpa:.2f}"
-    
-    return f"{result}, гр. {group_clean}, GPA {gpa_str}"
-
-# Проверка
-if __name__ == "__main__":
-    print("=== Проверка tuples.py ===")
-    
-    students = [
-        ("Мустафаев Сухроб Мухаммадович ", "BIVT-25-4", 4.6),
-        ("Рустамов Руслан Какоевич", "BIVT-25-20", 5.0),
-        (" Абдухакимов Шахзод Дийорович ", "ABB-01", 3.999),
-    ]
-    
-    for student in students:
-        formatted = format_record(student)
-        print(f"{student} -> {formatted}")
+    surname = parts[0] 
+    initials = []
+    for name in parts[1:]:  
+        if name:  
+            initials.append(name[0] + '.')  
+    if initials:
+        formatted_fio = surname + ' ' + ''.join(initials)
+    else:
+        formatted_fio = surname
+    formatted_gpa = f"{gpa:.2f}"
+    result = f"{formatted_fio}, гр. {group}, GPA {formatted_gpa}"
+    return result
+print(format_record(("Иванов Иван Иванович", "BIVT-25", 4.6)))
+print(format_record(("Петров Петр", "IKBO-12", 5.0)))
+print(format_record(("Петров Петр Петрович", "IKBO-12", 5.0)))
+print(format_record((" сидорова айна сергеевна ", "ABB-01", 3.999)))
+print(format_record(("  ", "", )))

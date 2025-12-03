@@ -1,73 +1,65 @@
-# matrix.py
-
 def transpose(mat):
-    if len(mat) == 0:
-        raise ValueError("Пустая строка")
-    
-    # Проверяем что все строки одинаковые
-    row_len = len(mat[0])
+    if not mat:
+        return []
+    row_length = len(mat[0])
     for row in mat:
-        if len(row) != row_len:
-            raise ValueError("Строки разной длины")
-    
-    # Создаем новую матрицу
-    new_mat = []
-    
-    # Для каждого столбца
-    for j in range(len(mat[0])):
+        if len(row) != row_length:
+            raise ValueError
+    result = []
+    for col_index in range(len(mat[0])):
         new_row = []
-        # Для каждой строки
-        for i in range(len(mat)):
-            new_row.append(mat[i][j])
-        new_mat.append(new_row)
-    
-    return new_mat
+        for row in mat:
+            new_row.append(row[col_index])
+        result.append(new_row)
+    return result
+nums = [[1, 2, 3]]
+print(transpose(nums))
+nums = [[1], [2], [3]]
+print(transpose(nums))
+nums = [[1, 2], [3, 4]]
+print(transpose(nums))
+nums = []
+print(transpose(nums))
+nums = [[1, 2], [3]]
+print(transpose(nums))
 
-def row_sums(mat):
-    if len(mat) == 0:
-        return []
-    
-    # Проверяем прямоугольность
-    first_len = len(mat[0])
-    for row in mat:
-        if len(row) != first_len:
-            raise ValueError("Строки разной длины")
-    
-    sums = []
-    for row in mat:
-        total = 0
-        for num in row:
-            total += num
-        sums.append(float(total))
-    
-    return sums
 
-def col_sums(mat):
-    if len(mat) == 0:
-        return []
-    
-    # Проверяем прямоугольность
-    first_len = len(mat[0])
-    for row in mat:
-        if len(row) != first_len:
-            raise ValueError("Строки разной длины")
-    
-    # Создаем список для сумм
-    sums = [0] * len(mat[0])
-    
-    for row in mat:
-        for j in range(len(row)):
-            sums[j] += row[j]
-    
-    # Преобразуем в float
-    return [float(x) for x in sums]
+def row_sums(l):
+    new_l = []
+    if len(l) == 0:
+        return new_l
+    for i in range(len(l) - 1):
+        if len(l[i]) != len(l[i+1]):
+            raise TypeError
+    for i in l:
+        new_l.append(sum(i))
+    return new_l
+nums = [[1, 2, 3], [4, 5, 6]]
+print(row_sums(nums))
+nums = [[-1, 1], [10, -10]]
+print(row_sums(nums))
+nums = [[0, 0], [0, 0]]
+print(row_sums(nums))
+nums = [[1, 2], [3]]
+print(row_sums(nums))
 
-# Проверка
-if __name__ == "__main__":
-    print("=== Проверка matrix.py ===")
-    
-    test_matrix = [[1, 2, 3], [4, 5, 6]]
-    print(f"Матрица: {test_matrix}")
-    print(f"Транспонированная: {transpose(test_matrix)}")
-    print(f"Суммы строк: {row_sums(test_matrix)}")
-    print(f"Суммы столбцов: {col_sums(test_matrix)}")
+
+def col_sums(l):
+    new_l = []
+    if len(l) == 0:
+        return new_l
+    for i in range(len(l) - 1):
+        if len(l[i]) != len(l[i+1]):
+            raise TypeError
+    for i in range(len(l)-1):
+        for j in range(len(l[1])):
+            new_l.append(l[i][j] + l[i+1][j])
+    return new_l
+nums = [[1, 2, 3], [4, 5, 6]]
+print(col_sums(nums))
+nums = [[-1, 1], [10, -10]]
+print(col_sums(nums))
+nums = [[0, 0], [0, 0]]
+print(col_sums(nums))
+nums = [[1, 2], [3]]
+print(col_sums(nums))

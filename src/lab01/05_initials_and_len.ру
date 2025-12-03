@@ -1,4 +1,0 @@
-familia, ima, ochestvo  = map(str,input("ФИО : ").split())
-print (f"инициалы :{familia[0]}{ima[0]}{ochestvo[0]}.")
-FIO = familia + ima + ochestvo
-print("Длина символов : ",len(FIO))

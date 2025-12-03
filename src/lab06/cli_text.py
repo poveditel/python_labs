@@ -1,61 +1,49 @@
 import argparse
-from pathlib import Path
-from src.lib.text import tokenize, count_freq, top_n
+import sys
+import os
 
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
+
+from lab03.text import normalize, tokenize, count_freq, top_n
+
+def cat(input_path, number_lines):
+    with open(input_path, 'r', encoding='utf-8') as file:
+        for i, line in enumerate(file, 1):
+            if number_lines:
+                print(f"{i}: {line}", end='')
+            else:
+                print(line, end='')
+
+def stats(input_text, n=5):
+    with open(input_text, 'r', encoding='utf-8') as f:
+        text = f.read()
+
+    tokens = tokenize(normalize(text))
+    freq = count_freq(tokens)
+    top_words = top_n(freq, n)
+
+    print(f"Топ-{n} самых частых слов:")
+    for word, count in top_words:
+        print(f"{word}: {count}")
 
 def main():
+    parser = argparse.ArgumentParser(description="CLI-утилиты")
+    subparsers = parser.add_subparsers(dest="command")
 
-    # создание объекта парсера с описанием программы
-    parser = argparse.ArgumentParser(description="CLI-утилиты лабораторной №6")
-
-    subparsers = parser.add_subparsers(dest="command", help="Доступные соманды")
-
-    stats_parser = subparsers.add_parser("stats", help="Частоты слов в тексте")
-    stats_parser.add_argument("--input", required=True, help="Входной текстовый файл")
-    stats_parser.add_argument(
-        "--top",
-        type=int,
-        default=5,
-        help="Количество топовых слов " "(по умолчанию: 5)",
-    )
-    cat_parser = subparsers.add_parser("cat", help="Вывод содержимого файла")
-    cat_parser.add_argument("--input", required=True, help="Путь к входному файлу")
+    cat_parser = subparsers.add_parser("cat", help="Вывести содержимое файла")
+    cat_parser.add_argument("--input", required=True, help="Путь к файлу")
     cat_parser.add_argument("-n", action="store_true", help="Нумеровать строки")
+
+    stats_parser = subparsers.add_parser("stats", help="Анализы частрты слов")
+    stats_parser.add_argument("--input", required=True, help="Путь к файлу")
+    stats_parser.add_argument("--top", type=int, default=5, help="Кол-во слов в топе")
 
     args = parser.parse_args()
 
-    file = Path(args.input)  # создание объекта Path из переданного пути к файлу
-
-    if not file.exists():
-        parser.error("Файл не найден")
-
-    if args.command == "cat":  # реализация команды cat
-        with open(file, "r", encoding="utf-8") as f:
-            number = 1
-            for row in f:
-                row = row.rstrip("\n")
-                if (
-                    args.n
-                ):  # если указан флаг n -> печатаем пронумерованные строки, если нет, просто строки
-                    print(f"{number}: {row}")
-                    number += 1
-                else:
-                    print(row)
-
-    elif args.command == "stats":  # реализация команды stats
-        with open(file, "r", encoding="utf-8") as f:
-            data = [row for row in f]
-        data = "".join(data)
-        tokens = tokenize(text=data)
-        freq = count_freq(tokens=tokens)
-        top = top_n(freq=freq, n=args.top)
-
-        # выводим топ слов
-        number = 1
-        for x, y in top:
-            print(f"{number}. {x} - {y}")
-            number += 1
-
+    if args.command == "cat":
+        cat(args.input, args.n)
+    elif args.command == "stats":
+        stats(args.input, args.top)
 
 if __name__ == "__main__":
     main()
