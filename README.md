@@ -431,3 +431,14 @@ word,count
 
 Студент: Мустафаев Сухроб Мухаммадович
 Группа: БИВТ-25-4
+
+
+# ЛР5 — JSON и конвертации (JSON↔CSV, CSV→XLSX): Техническое задание 
+## Задание A 
+python
+
+[text](src/lab05/json_csv.py)
+
+## Задание B
+
+[text](src/lab05/csv_xlsx.py)
