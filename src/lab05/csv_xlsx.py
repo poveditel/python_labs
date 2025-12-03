@@ -49,5 +49,5 @@ def csv_to_xlsx(csv_path: str, xlsx_path: str) -> None:
     wb.save(xlsx_path)
 
 
-csv_to_xlsx("src/data/samples/people.csv", "src/data/out/people.xlsx")
-csv_to_xlsx("src/data/samples/cities.csv", "src/data/out/cities.xlsx")
+csv_to_xlsx("data/samples/people.csv", "data/out/people.xlsx")
+csv_to_xlsx("data/samples/cities.csv", "data/out/cities.xlsx")

@@ -438,7 +438,9 @@ word,count
 python
 
 [text](src/lab05/json_csv.py)
+![alt text](<images/lab05/image copy 4.png>) ![alt text](<images/lab05/image copy 5.png>) ![alt text](<images/lab05/image copy 6.png>)
 
 ## Задание B
 
 [text](src/lab05/csv_xlsx.py)
+![alt text](images/lab05/image.png) ![alt text](<images/lab05/image copy.png>) ![alt text](<images/lab05/image copy 2.png>) ![alt text](<images/lab05/image copy 3.png>)
