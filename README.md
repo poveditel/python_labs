@@ -444,3 +444,5 @@ python
 
 [text](src/lab05/csv_xlsx.py)
 ![alt text](images/lab05/image.png) ![alt text](<images/lab05/image copy.png>) ![alt text](<images/lab05/image copy 2.png>) ![alt text](<images/lab05/image copy 3.png>)
+
+#
