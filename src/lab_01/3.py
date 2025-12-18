@@ -1,0 +1,6 @@
+pri = int(input())
+dis = int(input())
+vat = int(input())
+print(f"База после скидки: {pri * (1 - dis / 100):.2f} ₽")
+print(f"НДС:               {pri * (1 - dis / 100) * vat / 100:.2f} ₽")
+print(f"Итого к оплате:    {pri * (1 - dis / 100) * (1 + vat / 100):.2f} ₽")

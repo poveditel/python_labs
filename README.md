@@ -1,605 +1,1253 @@
-# ЛАБОРАТОРНАЯ РАБОТА 1
-## Задание 1
-``` python
-name = input("Имя: ")
-age = int(input("Возраст: "))
-print(f"Привет, {name}! Через год тебе будет {age + 1}."
-```
-- скрин вывода - 
-![img01](https://github.com/Ladoslaff/python_labs/blob/main/images/lab01/img01.png)
+## Лабораторная работа 1
 
-## Задание 2
-``` python
-num1 = float(input("a: "))
-num2 = float(input("b: "))
-sum = num1 + num2 
-avg = sum/2
-print(f"sum = {sum:.2f}", ";", f"avg={avg:.2f}")
-```
-- скрин вывода - 
-![img02](https://github.com/Ladoslaff/python_labs/blob/main/images/lab01/img02.png)
+### Задание 1
 
-## Задание 3
-``` python
-price = float(input("Введите цену = "))
-discount = float(input("Скидка = "))
-vat = float(input("НДС = "))
-base = price * (1 - discount/100)
-vat_amount = base * (vat/100)
-total = base + vat_amount
-print(f"База после скидки: {base:.2f} ₽")
-print(f"НДС: {vat_amount:.2f} ₽")
-print(f"Итого к оплате: {total:.2f} ₽")
-```
-- скрин вывода - 
-![img03](https://github.com/Ladoslaff/python_labs/blob/main/images/lab01/img03.png)
-
-## Задание 4
-``` python
-minuts = int(input("Введите кол-во минут = "))
-h = minuts//60
-mm = minuts%60
-print(f"{h}:{mm:02d}")
-```
-- скрин вывода - 
-![img04](https://github.com/Ladoslaff/python_labs/blob/main/images/lab01/img04.png)
-
-## Задание 5
-``` python
-fio = input("Введите ФИО ").split()
-print("Инициалы = ", fio[0][0], fio[1][0], fio[2][0], sep = '')
-print(len(fio[0] + fio[1] + fio[2])+2)
-```
-- скрин вывода - 
-![img05](https://github.com/Ladoslaff/python_labs/blob/main/images/lab01/img05.png)
-
-
-# ЛАБОРАТОРНАЯ РАБОТА 2
-
-
-## Задание 1
-``` python
-def min_max(nums):
-    if len(nums) == 0:
-        raise ValueError
-    mini = min(nums)
-    maxi = max(nums)
-    return (mini, maxi)
-nums = [3, -1, 5, 5, 0] 
-print(min_max(nums))
-nums = [42]
-print(min_max(nums))
-nums = [-5, -2, -9]
-print(min_max(nums))
-nums = [1.5, 2, 2.0, -3.1]
-print(min_max(nums))
-nums = []
-print(min_max(nums))
-```
-- скрин вывода -
-![img01](https://github.com/Ladoslaff/python_labs/blob/main/images/lab02/img01.png)
-
-
-
-``` python
-def unique_sorted(nums):
-    nums = sorted(set(nums))
-    return nums
-nums = [3, 1, 2, 1, 3]
-print(unique_sorted(nums))
-nums = []
-print(unique_sorted(nums))
-nums = [-1, -1, 0, 2, 2]
-print(unique_sorted(nums))
-nums = [1.0, 1, 2.5, 2.5, 0]
-print(unique_sorted(nums))
-```
-- скрин вывода -
-![img02](https://github.com/Ladoslaff/python_labs/blob/main/images/lab02/img02.png)
-
-
-``` python
-def flatten(nums):
-    otvetik = []
-    for e in nums:
-        if type(e) == list or type(e) == tuple:
-            for i in range(len(e)):
-                if e[i] != '':
-                    otvetik.append(e[i])
-        else:
-            raise TypeError
-    return otvetik
-nums = [[1, 2], [3, 4]]
-print(flatten(nums))
-nums = [[1, 2], (3, 4, 5)]
-print(flatten(nums))
-nums = [[1], [], [2, 3]]
-print(flatten(nums))
-nums = [[1, 2], "ab"]
-print(flatten(nums))
-```
-- скрин вывода -
-![img03](https://github.com/Ladoslaff/python_labs/blob/main/images/lab02/img03.png)
-
-
-## Задание 2
-``` python
-def transpose(mat):
-    if not mat:
-        return []
-    row_length = len(mat[0])
-    for row in mat:
-        if len(row) != row_length:
-            raise ValueError
-    result = []
-    for col_index in range(len(mat[0])):
-        new_row = []
-        for row in mat:
-            new_row.append(row[col_index])
-        result.append(new_row)
-    return result
-```
-- скрин вывода -
-![img04](/images/lab02/img04.png)
-
-
-
-``` python
-def row_sums(l):
-    new_l = []
-    if len(l) == 0:
-        return new_l
-    for i in range(len(l) - 1):
-        if len(l[i]) != len(l[i+1]):
-            raise TypeError
-    for i in l:
-        new_l.append(sum(i))
-    return new_l
-nums = [[1, 2, 3], [4, 5, 6]]
-print(row_sums(nums))
-nums = [[-1, 1], [10, -10]]
-print(row_sums(nums))
-nums = [[0, 0], [0, 0]]
-print(row_sums(nums))
-nums = [[1, 2], [3]]
-print(row_sums(nums))
-```
-- скрин вывода -
-![img05](/images/lab02/img05.png)
-
-
-
-
-``` python
-def col_sums(l):
-    new_l = []
-    if len(l) == 0:
-        return new_l
-    for i in range(len(l) - 1):
-        if len(l[i]) != len(l[i+1]):
-            raise TypeError
-    for i in range(len(l)-1):
-        for j in range(len(l[1])):
-            new_l.append(l[i][j] + l[i+1][j])
-    return new_l
-nums = [[1, 2, 3], [4, 5, 6]]
-print(col_sums(nums))
-nums = [[-1, 1], [10, -10]]
-print(col_sums(nums))
-nums = [[0, 0], [0, 0]]
-print(col_sums(nums))
-nums = [[1, 2], [3]]
-print(col_sums(nums))
-```
-- скрин вывода -
-![img06](/images/lab02/img06.png)
-
-
-
-## Задание 3
-
-``` python
-def format_record(rec):
-    fio, group, gpa = rec
-    if not fio or not fio.strip():
-        raise ValueError("ФИО не может быть пустым")
-    if not group or not group.strip():
-        raise ValueError("Группа не может быть пустой")
-    if not isinstance(gpa, (int, float)):
-        raise TypeError("GPA должен быть числом")
-    fio_clean = ' '.join(fio.split())  # минус лишние пробелы
-    fio_clean = fio_clean.title()      # первые буквы заглавнык
-    parts = fio_clean.split()
-    surname = parts[0] 
-    initials = []
-    for name in parts[1:]:  
-        if name:  
-            initials.append(name[0] + '.')  
-    if initials:
-        formatted_fio = surname + ' ' + ''.join(initials)
-    else:
-        formatted_fio = surname
-    formatted_gpa = f"{gpa:.2f}"
-    result = f"{formatted_fio}, гр. {group}, GPA {formatted_gpa}"
-    return result
-print(format_record(("Иванов Иван Иванович", "BIVT-25", 4.6)))
-print(format_record(("Петров Петр", "IKBO-12", 5.0)))
-print(format_record(("Петров Петр Петрович", "IKBO-12", 5.0)))
-print(format_record((" сидорова айна сергеевна ", "ABB-01", 3.999)))
-print(format_record(("  ", "", )))
-```
-- скрин вывода -
-![img07](/images/lab02/img07.png)
-
-# ЛАБОРАТОРГАЯ РАБОТА 3
-## Задание 1
 ```python
-def normalize(text, *, casefold=True, yo2e=True):
-    result = text
+name, age = input(), int(input()) + 1
+print(f'Привет, {name}! Через год тебе будет {age}.')
+```
+
+![Картинка 1](./images/lab_01/image_1.png)
+
+### Задание 2
+
+```python
+a = float(input().replace(',', '.'))
+b = float(input().replace(',', '.'))
+print(f'a: {a:.2f}')
+print(f'b: {b:.2f}')
+print(f'sum={a + b:.2f}; avg={(a + b)/ 2:.2f}')
+```
+
+![Картинка 2](./images/lab_01/image_2.png)
+
+### Задание 3
+
+```python
+pri = int(input())
+dis = int(input())
+vat = int(input())
+print(f'База после скидки: {pri * (1 - dis/100):.2f} ₽')
+print(f'НДС:               {pri * (1 - dis / 100) * vat / 100:.2f} ₽')
+print(f'Итого к оплате:    {pri * (1 - dis / 100) * (1 + vat / 100):.2f} ₽')
+```
+
+![Картинка 3](./images/lab_01/image_3.png)
+
+### Задание 4
+
+```python
+a = int(input())
+print(f'Минуты: {a}')
+print(f'{a//60}:{a % 60}')
+```
+
+![Картинка 4](./images/lab_01/image_4.png)
+
+### Задание 5
+
+```python
+a, b, c = input().split()
+print(f'ФИО: {a} {b} {c}')
+print(f'Инициалы: {a[0]}{b[0]}{c[0]}')
+print(len(a) + 2 + len(b) + len(c))
+```
+
+![Картинка 5](./images/lab_01/image_5.png)
+
+### Задание 6
+
+```python
+a, b = 0, 0
+for i in range(int(input())):
+    k = input().split()[-1]
+    if k == 'True': a += 1
+    else: b += 1
+print(a, b)
+```
+
+![Картинка 6](./images/lab_01/image_6.png)
+
+### Задание 7
+
+```python
+s, a, k, e, abc, p = input(), '0987654321', '', 0, 'ASDFGHJKLQWERTYUIOPZXCVBNM', 's'
+for i in s:
+    if i not in a:
+        if i in abc:
+            k += i
+            ns = s[s.index(i) + 1:]
+            break
+for n in range(len(ns)):
+    i = ns[n]
+    if p in a:
+        k += i
+        e = n
+        nks = ns[n + 1:]
+        break
+    p = i
+t = len(nks)
+while t > e:
+    k += nks[e]
+    nks = nks[e + 1:]
+    t -= (e + 1)
+print(k)
+```
+
+![Картинка 7](./images/lab_01/image_7.png)
+
+
+## Лабораторная работа 2
+
+### Задание A1
+
+```python
+def min_max(matrix):
+    if not matrix: return 'ValueError'
+    return (min(matrix), max(matrix))
+```
+![Картинка 1](./images/lab_02/image_A1.png)
+
+### Задание A2
+
+```python
+def unique_sorted(matrix):
+    if not matrix: return 'ValueError'
+    return sorted(list(set(matrix)))
+```
+![Картинка 2](./images/lab_02/image_A2.png)
+
+### Задание A3
+
+```python
+def flatten(matrix):
+    new_list = []
+    for i in matrix:
+        if type(i) != list:
+            if type(i) == tuple: new_list += list(i)
+            else: return 'ValueError'
+        else: new_list += i
+    return new_list
+```
+
+![Картинка 3](./images/lab_02/image_A3.png)
+
+
+### Задание B1
+
+```python
+def check(matrix):
+    if not matrix: return True
+    k = len(matrix[0])
+    for i in matrix:
+        if len(i) != k: return False
+    return True
+
+
+def transpose(matrix: list[list[float | int]]) -> list[list]:
+    if not check(matrix): return 'ValueError'
+    if not matrix: return []
+    new_list = []
+    new_list = [[]for i in range(len(matrix[0]))]
+    for i in matrix:
+        n = 0
+        for j in i:
+            new_list[n].append(j)
+            n += 1
+    return new_list
+```
+
+![Картинка 4](./images/lab_02/image_B1.png)
+
+### Задание B2
+
+```python
+def check(matrix):
+    if not matrix: return True
+    k = len(matrix[0])
+    for i in matrix:
+        if len(i) != k: return False
+    return True
+
+
+def row_sums(matrix: list[list[float | int]]) -> list[float]:
+    if not check(matrix): return 'ValueError'
+    if not matrix: return 'ValueError'
+    new_list = []
+    for i in matrix:
+        new_list.append(sum(i))
+    return new_list
+```
+
+![Картинка 5](./images/lab_02/image_B2.png)
+
+### Задание B3
+
+```python
+def check(matrix):
+    if not matrix: return True
+    k = len(matrix[0])
+    for i in matrix:
+        if len(i) != k: return False
+    return True
+
+
+def col_sums(matrix: list[list[float | int]]) -> list[float]:
+    if not check(matrix): return 'ValueError'
+    if not matrix: return 'ValueError'
+    return row_sums(transpose(matrix))
+```
+
+![Картинка 6](./images/lab_02/image_B3.png)
+
+### Задание C
+
+```python
+def format_record(rec: tuple[str, str, float]) -> str:
+    group, gpa = rec[1], rec[2]
+    name = rec[0].split()
+    fio = name[0].capitalize() + ' ' + name[1][0].upper() + '.'
+    if len(name) == 3:
+        fio += ' '
+        fio += name[-1][0].upper() + '.'
+    return f'{fio}, гр. {group}, GPA {gpa:.2f}'
+```
+
+![Картинка 7](./images/lab_02/image_C.png)
+
+## Лабораторная работа 3
+
+### Задача Normalize
+
+```python
+def normalize(text: str, *, casefold: bool = True, yo2e: bool = True) -> str:
     if casefold:
-        result = result.casefold()
-    
+        text = text.casefold()
     if yo2e:
-        result = result.replace('ё', 'е')
-        result = result.replace('Ё', 'е')
-    result = result.replace('\t', ' ')
-    result = result.replace('\n', ' ')
-    result = result.replace('\r', ' ')
-    words = result.split()
-    result = ' '.join(words)
-    return result
-print(normalize("ПрИвЕт\nМИр\t"))
-print(normalize("ёжик, Ёлка"))
-print(normalize("Hello\r\nWorld"))
-print(normalize("  двойные   пробелы  "))
+        while 'Ё' in text or 'ё' in text:
+            text = text.replace("ё", "е").replace("Ё", "Е")
+    while '\t' in text or '\r' in text or '\n' in text:
+        text = text.replace("\t", " ").replace("\r", " ").replace("\n", " ")
+    while "  " in text:
+        text = text.replace(" " * 2, " ")
+    return text.strip()
 ```
-- скрин вывода -
-![img01](/images/lab03/img01.png)
+![Картинка 1](./images/lab_03/image_Normalize.png)
 
-
+### Задача Tokenize
 
 ```python
-def tokenize(text):
-    pattern = r'\w+(?:-\w+)*'
-    tokens = re.findall(pattern, text)
-    return tokens
-print(tokenize("привет мир"))
-print(tokenize("hello,world!!!"))
-print(tokenize("по-настоящему круто" ))
-print(tokenize("2025 год"))
-print(tokenize("emoji 😀 не слово"))
+def tokenize(text: str) -> list[str]:
+    return [i.group() for i in finditer(pattern=r"\w+(?:-\w+)*", string=text)]
 ```
-- скрин вывода -
-![img02](/images/lab03/img02.png)
+![Картинка 2](./images/lab_03/image_Tokenize.png)
 
-
-
+### Задача Count_freq + top_n
 
 ```python
-def count_freq(tokens):
-    freq = {}
-    for token in tokens:
-        if token in freq:
-            freq[token] += 1
-        else:
-            freq[token] = 1
-    return freq
+def count_freq(tokens: list[str]) -> dict[str, int]:
+    co = {}
+    for i in tokens:
+        if i in co: co[i] += 1
+        else:  co[i] = 1
+    return co
 
-def top_n(freq, n=5):
-    items = list(freq.items())
-    items.sort(key=lambda x: (-x[1], x[0])) # - x[1] - это частота слова. -x[1] - минус делает сортировку по убыванию. x[0] - сортировка по возрастанию (А→Я)
-    top_items = items[:n]
-    return top_items
-tokens = ["a", "b", "a", "c", "b", "a"]
-freq = count_freq(tokens)
-top = top_n(freq, 2)
 
-print(f"Слова: {tokens}")
-print(f"Частоты: {freq}") 
-print(f"Топ-2: {top}")
+def top_n(freq: dict[str, int], n: int = 5) -> list[tuple[str, int]]:
+    freq = sorted(freq.items(), key=lambda item: [-item[1], item[0]])
+    top_n = []
+    for i in range(min(n, len(freq))):
+        top_n.append((freq[i][0], freq[i][1]))
+    return top_n
 ```
-- скрин вывода -
-![img03](/images/lab03/img03.png)
+![Картинка 3](./images/lab_03/image_Count_freq_top_n.png)
 
-## Задание 2
-``` python
-from text import normalize, tokenize, count_freq, top_n
-text = input("Введите текст: ")
-normalized_text = normalize(text)
-tokens = tokenize(normalized_text)
-freq_dict = count_freq(tokens)
-top_words = top_n(freq_dict, 5)
-print(f"Всего слов: {len(tokens)}")
-print(f"Уникальных слов: {len(freq_dict)}")
-print("Топ-5:")
-for word, count in top_words:
-    print(f"{word}:{count}")
+### Задача text_stats
+
+```python
+from src.lib.text import count_freq, top_n, normalize, tokenize
+
+
+def table(title: str, description: str, top: list[tuple[str, int]]) -> None:
+    max_word_length = max([len(i[0]) for i in top]) + 1
+
+    print(f"{title}{(max_word_length - 5) * ' '}| {description}")
+    print("-" * (max_word_length + 2 + max_word_length))
+    for i in top:
+        word, count = i
+        print(f"{word}{(max_word_length - len(word)) * ' '}| {count}")
+
+
+def print_summary(text: str, is_table: bool, n: int = 5) -> None:
+    tokens = tokenize(text=normalize(text=text))
+    top = top_n(count_freq(tokens), n=n)
+
+    print(f"Всего слов: {len(tokens)}")
+    print(f"Уникальных слов: {len(set(tokens))}")
+
+    print("Топ-5:")
+
+    if is_table:
+        table(title="cлoво", description="частота", top=top)
+    else:
+        for i, j in top:
+            print(f"{i}:{j}")
+
+
+
 ```
-- скрин вывода -
-![img04](/images/lab03/img04.png)
 
-# ЛАБОРАТОРНАЯ РАБОТА 4
-## Задание 1
-``` python
+```python
+import sys
+from ..lib.text import normalize
+from src.lib.table import print_summary
+
+
+def main():
+     IS_TABLE = True
+     print_summary(text=sys.stdin.read(), is_table=IS_TABLE)
+
+
+main()
+
+"""
+echo "Привет, мир! Привет!!!" | python -m src.lab_03.text_stats
+"""
+```
+![Картинка 4](./images/lab_03/image_text_stats.png)
+
+## Лабораторная работа 4
+
+### Задача io_txt_csv
+
+```python
 from pathlib import Path
 import csv
-
-def read_text(path, encoding="utf-8"):
-    file_path = Path(path)
-    return file_path.read_text(encoding=encoding)
-
-def write_csv(rows, path, header=None):
-    file_path = Path(path)
-    rows_list = list(rows)
-    
-    if rows_list:
-        first_row_length = len(rows_list[0])
-        for i, row in enumerate(rows_list):
-            if len(row) != first_row_length:
-                raise ValueError(f"Строка {i} имеет другую длину")
-    
-    with file_path.open("w", newline="", encoding="utf-8") as file:
-        writer = csv.writer(file)
-        
-        if header is not None:
-            writer.writerow(header)
-        
-        for row in rows_list:
-            writer.writerow(row)
-
-def ensure_parent_dir(path):
-    file_path = Path(path)
-    file_path.parent.mkdir(parents=True, exist_ok=True)
-```
-## Задание 2
-``` python
+from typing import Iterable, Sequence
+from collections import Counter
+from src.lib.text import normalize, tokenize
 from pathlib import Path
-import sys
-import os
 
-sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'lab03'))
 
-from text import normalize, tokenize, count_freq, top_n
-from io_txt_csv import read_text, write_csv, ensure_parent_dir
+def read_text(path: str | Path, encoding: str = "utf-8") -> str:
+    p = Path(path)
+    return p.read_text(encoding=encoding)
 
-def create_report(input_file="data/input.txt", output_file="data/report.csv", encoding="utf-8"):
-    try:
-        text = read_text(input_file, encoding)
-    except FileNotFoundError:
-        print(f"ОШИБКА: Файл {input_file} не найден!")
-        sys.exit(1)
-    except UnicodeDecodeError:
-        print(f"ОШИБКА: Не удалось прочитать файл в кодировке {encoding}!")
-        sys.exit(1)
-    
-    normalized_text = normalize(text)
-    tokens = tokenize(normalized_text)
-    freq_dict = count_freq(tokens)
-    top_words = top_n(freq_dict, 5)
-    
-    print(f"Всего слов: {len(tokens)}")
-    print(f"Уникальных слов: {len(freq_dict)}")
-    print("Топ-5:")
-    for word, count in top_words:
-        print(f"{word}:{count}")
-    
-    sorted_words = sorted(freq_dict.items(), key=lambda x: (-x[1], x[0]))
-    csv_data = []
-    for word, count in sorted_words:
-        csv_data.append([word, count])
-    
-    ensure_parent_dir(output_file)
-    write_csv(csv_data, output_file, header=("word", "count"))
-    print(f"Отчет сохранен в: {output_file}")
 
-if __name__ == "__main__":
-    create_report()
+def write_csv(rows: Iterable[Sequence], path: str | Path,
+              header: tuple[str, ...] | None = None) -> None:
+    p = Path(path)
+    rows = list(rows)
+    with p.open("w", newline="", encoding="utf-8") as f:
+        w = csv.writer(f)
+        if header is not None:
+            w.writerow(header)
+        for r in rows:
+            w.writerow(r)
+
+
+def frequencies_from_text(text: str) -> dict[str, int]:
+    tokens = tokenize(normalize(text))
+    return Counter(tokens)
+
+
+def sorted_word_counts(freq: dict[str, int]) -> list[tuple[str, int]]:
+    return sorted(freq.items(), key=lambda kv: (-kv[1], kv[0]))
 ```
-- скрин вывода - 
-![img01](/images/lab04/img01.png)
 
-# ЛАБОРАТОРНАЯ РАБОТА 5
-## Задание 1
-```python 
+
+### Задача text_report
+
+```python
+from src.lab_04.io_txt_csv import (
+    read_text,
+    write_csv,
+    frequencies_from_text,
+    sorted_word_counts,
+)
+import argparse
+from src.lib.table import print_summary
+
+
+def main():
+    parser = argparse.ArgumentParser(description="Анализ текста и отчёт в CSV")
+    parser.add_argument("--in", dest="input", default="data/lab04/input.txt")
+    parser.add_argument("--out", dest="output", default="data/report.csv")
+    parser.add_argument("--encoding", dest="encoding", default="utf-8")
+    args = parser.parse_args()
+
+    text = read_text(
+        path=args.input,
+        encoding=args.encoding,
+    )
+    freq = frequencies_from_text(text)
+    data = sorted_word_counts(freq)
+
+    write_csv(
+        header=("word", "count"),
+        rows=data,
+        path=args.output,
+    )
+
+    print_summary(text=text, is_table=True)
+
+
+main()
+
+```
+
+## Лабораторная работа 5
+
+### Конвертация json в csv и обратно
+
+```python
+from pathlib import Path
+from src.lab_04.io_txt_csv import write_csv
 import json
 import csv
-from pathlib import Path
 
-def json_to_csv(json_path: str, csv_path: str) -> None:
-    json_file = Path(json_path)
-    if not json_file.exists():
-        raise FileNotFoundError
-    
-    if json_file.suffix.lower() != '.json':
-        raise ValueError
-    
-    with open(json_path, 'r', encoding='utf-8') as f:
-        data = json.load(f)
-    
-    if not data:
-        raise ValueError
-    
-    fieldnames = list(data[0].keys())
-    
-    with open(csv_path, 'w', encoding='utf-8', newline='') as f:
-        writer = csv.DictWriter(f, fieldnames=fieldnames)
+
+def json_to_csv(
+    json_path: str | Path, csv_path: str | Path, encoding: str = "utf-8"
+) -> None:
+    json_path = Path(json_path)
+
+    if not json_path.exists():
+        raise FileNotFoundError(f"Файл {json_path} не найден")
+
+    with json_path.open("r", encoding=encoding) as json_file:
+        try:
+            data_json = json.load(json_file)
+        except json.JSONDecodeError:
+            raise ValueError("Пустой JSON или неподдерживаемая структура")
+
+    if not data_json or not isinstance(data_json, list):
+        raise ValueError("Пустой JSON или неподдерживаемая структура")
+
+    if not all(isinstance(row, dict) for row in data_json):
+        raise ValueError("JSON должен содержать список словарей")
+
+    csv_path = Path(csv_path)
+    with csv_path.open("w", newline="", encoding=encoding) as f:
+        writer = csv.DictWriter(f, fieldnames=tuple(data_json[0].keys()))
         writer.writeheader()
-        for row in data:
-            writer.writerow({field: str(row.get(field, '')) for field in fieldnames})
-json_to_csv(f"data/samples/people.json", f"data/samples/people.csv")
+        writer.writerows(data_json)
 
 
-def csv_to_json(csv_path: str, json_path: str) -> None:
-    csv_file = Path(csv_path)
-    if not csv_file.exists():
-        raise FileNotFoundError
-    
-    if csv_file.suffix.lower() != '.csv':
-        raise ValueError
-    
-    with open(csv_path, 'r', encoding='utf-8') as f:
-        reader = csv.DictReader(f)
-        data = list(reader)
-    
-    if not data:
-        raise ValueError
-    
-    with open(json_path, 'w', encoding='utf-8') as f:
-        json.dump(data, f, ensure_ascii=False, indent=2)
-csv_to_json(f"data/samples/people.csv",f"data/samples/people.json")
-```
-- Скрины -
-![img01](/images/lab05/img01.png)
-![img04](/images/lab05/img04.png)
+def csv_to_json(
+    csv_path: str | Path, json_path: str | Path, encoding: str = "utf-8"
+) -> None:
 
-## Задание 2
-``` python
-import csv
-import os
-from openpyxl import Workbook
-from openpyxl.utils import*
+    csv_path = Path(csv_path)
 
+    if not csv_path.exists():
+        raise FileNotFoundError(f"CSV-файл {csv_path} не найден")
 
-def csv_to_xlsx(csv_path: str, xlsx_path: str) -> None:
-    if not os.path.exists(csv_path):
-        raise FileNotFoundError(f"Файл не найден: {csv_path}")
-    
-    if not csv_path.lower().endswith('.csv'):
-        raise ValueError("Входной файл должен иметь расширение .csv")
-    
-    if not xlsx_path.lower().endswith(".xlsx"):
-        raise ValueError("Выходной файл должен иметь расширение .xlsx")
-    
-    with open(csv_path, 'r', encoding='utf-8') as f:
-        reader = csv.reader(f)
-        rows = list(reader)
-    
-    if not rows:
+    with csv_path.open("r", encoding=encoding) as csv_file:
+        reader = csv.DictReader(csv_file)
+        if not reader.fieldnames:
+            raise ValueError("CSV-файл не содержит заголовков или пуст")
+        data_csv = [row for row in reader]
+
+    if not data_csv:
         raise ValueError("CSV-файл пуст")
+
+    json_path = Path(json_path)
+    with json_path.open("w", encoding=encoding) as json_file:
+        json.dump(data_csv, json_file, indent=2)
+```
+
+### Конвертация csv в xlsx
+
+```python
+from pathlib import Path
+import csv
+from openpyxl import Workbook
+
+
+def csv_to_xlsx(
+    csv_path: str | Path,
+    xlsx_path: str | Path,
+    encoding: str = "utf-8",
+) -> None:
+    csv_path = Path(csv_path)
+
+    if not csv_path.exists():
+        raise FileNotFoundError(f"CSV-файл {csv_path} не найден")
 
     wb = Workbook()
     ws = wb.active
     ws.title = "Sheet1"
 
-    for row in rows:
-        ws.append(row)
+    with csv_path.open("r", encoding=encoding) as csv_file:
+        reader = csv.DictReader(csv_file)
 
-    for i, col in enumerate(ws.columns, start=1):
-        max_length = 0
-        for cell in col:
-            if cell.value:
-                max_length = max(max_length, len(str(cell.value)))
-        ws.column_dimensions[get_column_letter(i)].width = max(max_length, 8)
+        if not reader.fieldnames:
+            raise ValueError("CSV без заголовков или пуст")
 
+        ws.append(reader.fieldnames)
+
+        for row in reader:
+            ws.append([row[field] for field in reader.fieldnames])
+
+    xlsx_path = Path(xlsx_path)
     wb.save(xlsx_path)
-csv_to_xlsx("data/samples/people_02.csv", "data/output.xlsx")
+
 ```
-- Скрины -
-![img02](/images/lab05/img02.png)
-![img03](/images/lab05/img03.png)
 
- # ЛАБОРАТОРНАЯ РАБОТА 6
- ## Задание 1
-``` python
+## Лабораторная работа 6
+
+### Задание cli_text
+
+```python
+
 import argparse
-import sys
-import os
+from pathlib import path
+from src.lib.text import count_freq, tokenize, top_n
 
-sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
-
-from lab03.text import normalize, tokenize, count_freq, top_n
-
-def cat(input_path, number_lines):
-    with open(input_path, 'r', encoding='utf-8') as file:
-        for i, line in enumerate(file, 1):
-            if number_lines:
-                print(f"{i}: {line}", end='')
-            else:
-                print(line, end='')
-
-def stats(input_text, n=5):
-    with open(input_text, 'r', encoding='utf-8') as f:
-        text = f.read()
-
-    tokens = tokenize(normalize(text))
-    freq = count_freq(tokens)
-    top_words = top_n(freq, n)
-
-    print(f"Топ-{n} самых частых слов:")
-    for word, count in top_words:
-        print(f"{word}: {count}")
 
 def main():
-    parser = argparse.ArgumentParser(description="CLI-утилиты")
+    parser = argparse.ArgumentParser(description="CLI-утилиты лабораторной №6")
+
     subparsers = parser.add_subparsers(dest="command")
 
     cat_parser = subparsers.add_parser("cat", help="Вывести содержимое файла")
-    cat_parser.add_argument("--input", required=True, help="Путь к файлу")
+
+    cat_parser.add_argument("--input", required=True, help="Путь к входному файлу")
+
     cat_parser.add_argument("-n", action="store_true", help="Нумеровать строки")
 
-    stats_parser = subparsers.add_parser("stats", help="Анализы частрты слов")
-    stats_parser.add_argument("--input", required=True, help="Путь к файлу")
-    stats_parser.add_argument("--top", type=int, default=5, help="Кол-во слов в топе")
+    stats_parser = subparsers.add_parser("stats", help="Частоты слов в тексте")
+
+    stats_parser.add_argument("--input", required=True, help="Путь к текстовому файлу")
+
+    stats_parser.add_argument("--top", type=int, default=5, help="Количество наиболее частых слов")
 
     args = parser.parse_args()
+
+    filepath = Path(args.input)
+
+    if not filepath.exists():
+        raise FileNotFoundError(f"Файл {filepath} не найден")
 
     if args.command == "cat":
-        cat(args.input, args.n)
+
+        with filepath.open("r", encoding="utf-8") as f:
+            num = 1
+            for line in f:
+                line = line.rstrip("\n")
+                if args.n:
+                    print(f"{num}: {line}")
+                    num += 1
+                else:
+                    print(line)
+
     elif args.command == "stats":
-        stats(args.input, args.top)
+
+        content = [i for i in filepath.open("r", encoding="utf-8")]
+        tokens = tokenize(text="".join(content))
+        freq = count_freq(tokens=tokens)
+        top = top_n(freq=freq, n=args.top)
+
+        num = 1
+        for q, w in top:
+            print(f"{num}. {q} - {w}")
+            num += 1
+
 
 if __name__ == "__main__":
     main()
+
 ```
-- Скрин вывода -
-![img01](/images/lab06/img01.png)
 
-# Задание 2
-``` python
+### Задание cli_convert
+
+```python
+
 import argparse
-import sys
-import os
+from src.lib.cvs_xlsx import csv_to_xlsx
+from src.lib.json_csv import csv_to_json, json_to_csv
 
-# Добавляем путь для импорта
-sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
-
-from lab05.json_csv import json_to_csv, csv_to_json
-from lab05.csv_xlsx import csv_to_xlsx
 
 def main():
-    parser = argparse.ArgumentParser(description="Конвертеры данных")
+    parser = argparse.ArgumentParser(description="CLI-утилиты лабораторной №6")
+
     subparsers = parser.add_subparsers(dest="command")
 
-    p1 = subparsers.add_parser("json2csv")
-    p1.add_argument("--in", dest="input", required=True)
-    p1.add_argument("--out", dest="output", required=True)
+    json2csv_parser = subparsers.add_parser("json2csv", help="Конвертировать JSON в CSV")
 
-    p2 = subparsers.add_parser("csv2json")
-    p2.add_argument("--in", dest="input", required=True)
-    p2.add_argument("--out", dest="output", required=True)
+    json2csv_parser.add_argument("--in", dest="input", required=True, help="Путь к JSON-файлу")
 
-    p3 = subparsers.add_parser("csv2xlsx")
-    p3.add_argument("--in", dest="input", required=True)
-    p3.add_argument("--out", dest="output", required=True)
+    json2csv_parser.add_argument("--out", dest="output", required=True, help="Путь для CSV-файла")
+
+    csv2json_parser = subparsers.add_parser("csv2json", help="Конвертировать CSV в JSON")
+
+    csv2json_parser.add_argument("--in", dest="input", required=True, help="Путь к CSV-файлу")
+
+    csv2json_parser.add_argument("--out", dest="output", required=True, help="Путь для JSON-файла")
+
+    csv2xlsx_parser = subparsers.add_parser("csv2xlsx", help="Конвертировать CSV в XLSX")
+
+    csv2xlsx_parser.add_argument("--in", dest="input", required=True, help="Путь к CSV-файлу")
+
+    csv2xlsx_parser.add_argument("--out", dest="output", required=True, help="Путь для XLSX-файла")
 
     args = parser.parse_args()
 
-    os.makedirs("data/out", exist_ok=True) #это типа для результатов папка
-
     if args.command == "json2csv":
-        json_to_csv(args.input, args.output)
-        print(f"Успешно: {args.input} -> {args.output}")
+        json_to_csv(json_path=args.input, csv_path=args.output)
+
     elif args.command == "csv2json":
-        csv_to_json(args.input, args.output)
-        print(f"Успешно: {args.input} -> {args.output}")
+        csv_to_json(csv_path=args.input, json_path=args.output)
+
     elif args.command == "csv2xlsx":
-        csv_to_xlsx(args.input, args.output)
-        print(f"Успешно: {args.input} -> {args.output}")
+        csv_to_xlsx(csv_path=args.input, xlsx_path=args.output)
+
 
 if __name__ == "__main__":
     main()
-```
-![img02](/images/lab06/img02.png)
-![img03](/images/lab06/img03.png)
 
-плпоалалдвао
+```
+
+## Лабораторная работа 7
+
+### test_json_csv
+
+```python
+import csv
+import json
+from pathlib import Path
+
+import pytest
+
+from src.lib.json_csv import csv_to_json, json_to_csv
+
+
+def write_json(path: Path, obj):
+    path.write_text(json.dumps(obj, ensure_ascii=False, indent=2), encoding="utf-8")
+
+
+def read_csv_rows(path: Path):
+    with path.open(encoding="utf-8") as f:
+        return list(csv.DictReader(f))
+
+
+def test_json_to_csv_roundtrip(tmp_path: Path):
+    src = tmp_path / "people.json"
+    dst = tmp_path / "people.csv"
+    data = [{"name": "Alice", "age": 22}, {"name": "Bob", "age": 25}]
+    write_json(src, data)
+
+    json_to_csv(str(src), str(dst))
+    rows = read_csv_rows(dst)
+    assert len(rows) == 2
+    assert set(rows[0]) >= {"name", "age"}
+
+
+def test_csv_to_json_roundtrip(tmp_path: Path):
+    src = tmp_path / "people.csv"
+    dst = tmp_path / "people.json"
+    src.write_text("name,age\nAlice,22\nBob,25\n", encoding="utf-8")
+
+    csv_to_json(str(src), str(dst))
+    obj = json.loads(dst.read_text(encoding="utf-8"))
+    assert isinstance(obj, list) and len(obj) == 2
+    assert set(obj[0]) == {"name", "age"}
+
+
+def test_json_to_csv_empty_raises(tmp_path: Path):
+    src = tmp_path / "empty.json"
+    src.write_text("[]", encoding="utf-8")
+    with pytest.raises(ValueError):
+        json_to_csv(str(src), str(tmp_path / "out.csv"))
+
+
+def test_csv_to_json_no_header_raises(tmp_path: Path):
+    src = tmp_path / "bad.csv"
+    src.write_text("", encoding="utf-8")
+    with pytest.raises(ValueError):
+        csv_to_json(str(src), str(tmp_path / "out.json"))
+
+
+def test_missing_file_raises():
+    with pytest.raises(FileNotFoundError):
+        csv_to_json("nope.csv", "out.json")
+
+```
+
+### test_text
+
+```python
+import pytest
+from src.lib.text import normalize, tokenize, count_freq, top_n
+
+
+class TestNormalize:
+    @pytest.mark.parametrize(
+        "source, expected",
+        [
+            ("ПрИвЕт\nМИр\t", "привет мир"),
+            ("ёжик, Ёлка", "ежик, елка"),
+            ("Hello\r\nWorld", "hello world"),
+            ("  двойные   пробелы  ", "двойные пробелы"),
+            ("", ""),
+            ("   ", ""),
+            ("\n\t\r   ", ""),
+            (
+                "Съешь ещё этих мягких французских булок",
+                "съешь еще этих мягких французских булок",
+            ),
+        ],
+    )
+    def test_normalize(self, source, expected):
+        assert normalize(source) == expected
+
+    def test_normalize_preserves_punctuation(self):
+        text = "Привет, мир! Как дела?"
+        result = normalize(text)
+        assert "привет, мир! как дела?" == result
+
+
+class TestTokenize:
+    @pytest.mark.parametrize(
+        "source, expected",
+        [
+            ("привет мир", ["привет", "мир"]),
+            ("Hello World", ["hello", "world"]),
+            ("раз-два-три", ["раз", "два", "три"]),
+            ("", []),
+            ("!!! ??? ...", []),
+            ("word1 word2 word3", ["word1", "word2", "word3"]),
+            ("Он сказал: 'Привет!'", ["он", "сказал", "привет"]),
+        ],
+    )
+    def test_tokenize(self, source, expected):
+        assert tokenize(source) == expected
+
+    def test_tokenize_case_insensitive(self):
+        text = "Привет МИР Hello WORLD"
+        result = tokenize(text)
+        assert result == ["привет", "мир", "hello", "world"]
+
+
+class TestCountFreq:
+    def test_count_freq_basic(self):
+        tokens = ["я", "люблю", "python", "python", "люблю", "я", "я"]
+        result = count_freq(tokens)
+        expected = {"я": 3, "люблю": 2, "python": 2}
+        assert result == expected
+
+        assert count_freq([]) == {}
+
+    def test_count_freq_single(self):
+        assert count_freq(["слово"]) == {"слово": 1}
+
+    def test_count_freq_special_chars(self):
+        tokens = ["word", "word", "word2", "word2", "word2"]
+        result = count_freq(tokens)
+        assert result["word"] == 2
+        assert result["word2"] == 3
+
+
+class TestTopN:
+    def test_top_n_basic(self):
+        freq = {"я": 5, "ты": 3, "он": 7, "она": 2}
+        result = top_n(freq, 3)
+        expected = [("он", 7), ("я", 5), ("ты", 3)]
+        assert result == expected
+
+    def test_top_n_tie_breaker(self):
+        freq = {"яблоко": 3, "апельсин": 3, "банан": 3, "груша": 2}
+        result = top_n(freq, 3)
+        expected = [("апельсин", 3), ("банан", 3), ("яблоко", 3)]
+        assert result == expected
+
+    def test_top_n_more_than_available(self):
+        freq = {"а": 1, "б": 2}
+        result = top_n(freq, 10)
+        assert len(result) == 2
+        assert result == [("б", 2), ("а", 1)]
+
+    def test_top_n_empty_dict(self):
+        assert top_n({}, 5) == []
+
+    def test_top_n_zero_n(self):
+        freq = {"а": 1, "б": 2}
+        assert top_n(freq, 0) == []
+
+    def test_top_n_negative_n(self):
+        freq = {"а": 1, "б": 2}
+        assert top_n(freq, -1) == []
+
+
+class TestIntegration:
+    def test_full_pipeline(self):
+        text = "Привет мир! Привет всем. Мир прекрасен."
+
+        normalized = normalize(text)
+        assert normalized == "привет мир! привет всем. мир прекрасен."
+
+        tokens = tokenize(normalized)
+        assert tokens == ["привет", "мир", "привет", "всем", "мир", "прекрасен"]
+
+        freq = count_freq(tokens)
+        expected_freq = {"привет": 2, "мир": 2, "всем": 1, "прекрасен": 1}
+        assert freq == expected_freq
+
+        top = top_n(freq, 2)
+        assert top == [("мир", 2), ("привет", 2)]
+
+```
+
+### Результаты теста
+
+![Картинка 1](./images/cov_test.png)
+
+### Результаты black
+
+![Картинка 2](./images/black_test.png)
+
+### Результаты ruff
+
+![Картинка 3](./images/ruff_test.png)
+
+### pyproject.toml
+
+```python
+[build-system]
+requires = ["setuptools >= 77.0.3"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "python-labs"
+version = "1.0.0"
+dependencies = []
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+    "pytest-cov>=5.0.0",
+    "black>=24.0.0",
+]
+```
+
+
+## Лабораторная работа 8
+
+### Создание класса
+
+```python
+from dataclasses import dataclass
+from datetime import datetime, date
+import json
+
+
+@dataclass
+class Student:
+    fio: str
+    birthdate: str
+    group: str
+    gpa: float
+
+    def __post_init__(self):
+        try:
+            datetime.strptime(self.birthdate, "%Y-%m-%d")
+        except ValueError:
+            raise ValueError(f"Invalid birthdate format: {self.birthdate}. Expected format: YYYY-MM-DD")
+
+        if not (0 <= self.gpa <= 5):
+            raise ValueError(f"GPA must be between 0 and 5, got: {self.gpa}")
+
+    def age(self) -> int:
+        birth_date = datetime.strptime(self.birthdate, "%Y-%m-%d").date()
+        today = date.today()
+        age = today.year - birth_date.year
+        if today.month < birth_date.month or (today.month == birth_date.month and today.day < birth_date.day):
+            age -= 1
+        return age
+
+    def to_dict(self) -> dict:
+        return {
+            "fio": self.fio,
+            "birthdate": self.birthdate,
+            "group": self.group,
+            "gpa": self.gpa
+        }
+
+    @classmethod
+    def from_dict(cls, d: dict):
+        return cls(
+            fio=d["fio"],
+            birthdate=d["birthdate"],
+            group=d["group"],
+            gpa=d["gpa"]
+        )
+
+    def __str__(self):
+        return f"Student: {self.fio}, Group: {self.group}, GPA: {self.gpa}, Age: {self.age()}"
+```
+
+### Конвертация в JSON
+
+```python
+import json
+from typing import List
+from models import Student
+
+
+def students_to_json(students: List[Student], path: str):
+    data = [student.to_dict() for student in students]
+    with open(path, 'w', encoding='utf-8') as f:
+        json.dump(data, f, ensure_ascii=False, indent=2)
+
+
+def students_from_json(path: str) -> List[Student]:
+    with open(path, 'r', encoding='utf-8') as f:
+        data = json.load(f)
+
+    students = [Student.from_dict(item) for item in data]
+
+    return students
+```
+
+## Лабораторная работа 9
+
+### group
+
+```python
+import csv
+from pathlib import Path
+from typing import List, Dict, Any
+from src.lab_08.models import Student
+from src.lib.io_txt_csv import ensure_parent_dir, write_csv
+from src.lib.json_csv import csv_to_json
+
+
+class Group:
+    def __init__(self, storage_path: str):
+        self.path = Path(storage_path)
+        self._ensure_storage_exists()
+
+    def _ensure_storage_exists(self) -> None:
+        if not self.path.exists():
+            ensure_parent_dir(self.path)
+            write_csv([], self.path, header=("fio", "birthdate", "group", "gpa"))
+
+    def _read_all(self) -> List[Dict[str, str]]:
+        if not self.path.exists():
+            return []
+
+        with self.path.open("r", encoding="utf-8") as f:
+            reader = csv.DictReader(f)
+            return list(reader)
+
+    def _write_all(self, rows: List[Dict[str, str]]) -> None:
+        if rows:
+            header = tuple(rows[0].keys())
+            tuple_rows = [tuple(row.values()) for row in rows]
+            write_csv(tuple_rows, self.path, header=header)
+        else:
+            write_csv([], self.path, header=("fio", "birthdate", "group", "gpa"))
+
+    def list(self) -> List[Student]:
+        rows = self._read_all()
+        students = []
+        for row in rows:
+            try:
+                row_copy = row.copy()
+                row_copy["gpa"] = float(row_copy["gpa"])
+                student = Student.from_dict(row_copy)
+                students.append(student)
+            except (ValueError, KeyError) as e:
+                print(f"Warning: Skipping invalid record: {row}. Error: {e}")
+        return students
+
+    def add(self, student: Student) -> None:
+        rows = self._read_all()
+        student_dict = student.to_dict()
+        student_dict["gpa"] = str(student_dict["gpa"])
+        rows.append(student_dict)
+        self._write_all(rows)
+
+    def find(self, substr: str) -> List[Student]:
+        all_students = self.list()
+        return [s for s in all_students if substr.lower() in s.fio.lower()]
+
+    def remove(self, fio: str) -> int:
+        rows = self._read_all()
+        initial_count = len(rows)
+        rows = [r for r in rows if r["fio"] != fio]
+        final_count = len(rows)
+        self._write_all(rows)
+        return initial_count - final_count
+
+    def update(self, fio: str, **fields) -> bool:
+        rows = self._read_all()
+        updated = False
+
+        for row in rows:
+            if row["fio"] == fio:
+                for key, value in fields.items():
+                    if key in row:
+                        if key == "gpa":
+                            row[key] = str(value)
+                        else:
+                            row[key] = str(value)
+                updated = True
+                break
+
+        if updated:
+            self._write_all(rows)
+        return updated
+
+    def stats(self) -> Dict[str, Any]:
+        students = self.list()
+
+        if not students:
+            return {
+                "count": 0,
+                "min_gpa": None,
+                "max_gpa": None,
+                "avg_gpa": None,
+                "groups": {},
+                "top_5_students": [],
+            }
+
+        gpas = [s.gpa for s in students]
+        count = len(students)
+        min_gpa = min(gpas)
+        max_gpa = max(gpas)
+        avg_gpa = sum(gpas) / count
+
+        groups = {}
+        for s in students:
+            groups[s.group] = groups.get(s.group, 0) + 1
+
+        top_students = sorted(students, key=lambda s: s.gpa, reverse=True)[:5]
+        top_5_students = [{"fio": s.fio, "gpa": s.gpa} for s in top_students]
+
+        return {
+            "count": count,
+            "min_gpa": min_gpa,
+            "max_gpa": max_gpa,
+            "avg_gpa": round(avg_gpa, 2),
+            "groups": groups,
+            "top_5_students": top_5_students,
+        }
+
+    def export_to_json(self, json_path: str) -> None:
+        csv_to_json(self.path, json_path)
+```
+
+### Пример работы
+
+![Картинка 1](./images/lab_09.png)
+
+## Лабораторная работа 10
+
+### Stack
+
+```python
+class Stack:
+    def __init__(self):
+        self._data: list[Any] = []
+
+    def push(self, item: Any) -> None:
+        self._data.append(item)
+
+    def pop(self) -> Any:
+        if self.is_empty():
+            raise IndexError("Невозможно извлечь элемент из пустого стека")
+        return self._data.pop()
+
+    def peek(self) -> Any | None:
+        if self.is_empty():
+            return None
+        return self._data[-1]
+
+    def is_empty(self) -> bool:
+        return len(self._data) == 0
+
+    def __len__(self) -> int:
+        return len(self._data)
+
+    def __repr__(self) -> str:
+        return f"Stack({self._data})"
+```
+
+![Картинка 1](./images/lab_10/stack_demo.png)
+
+### Queque
+
+```python
+class Queue:
+    def __init__(self):
+        self._data: deque[Any] = deque()
+
+    def enqueue(self, item: Any) -> None:
+        self._data.append(item)
+
+    def dequeue(self) -> Any:
+        if self.is_empty():
+            raise IndexError("Невозможно извлечь элемент из пустой очереди")
+        return self._data.popleft()
+
+    def peek(self) -> Any | None:
+        if self.is_empty():
+            return None
+        return self._data[0]
+
+    def is_empty(self) -> bool:
+        return len(self._data) == 0
+
+    def __len__(self) -> int:
+        return len(self._data)
+
+    def __repr__(self) -> str:
+        return f"Queue({list(self._data)})"
+```
+
+![Картинка 2](./images/lab_10/queue_demo.png)
+
+
+### Singly Linked List
+
+```python
+from typing import Any
+
+
+class Node:
+    def __init__(self, value: Any):
+        self.value = value
+        self.next: "Node" | None = None
+
+
+class SinglyLinkedList:
+    def __init__(self):
+        self.head: Node | None = None
+        self.tail: Node | None = None
+        self._size = 0
+
+    def append(self, value: Any) -> None:
+        new_node = Node(value)
+        if self.head is None:
+            # Список пуст
+            self.head = new_node
+            self.tail = new_node
+        else:
+            self.tail.next = new_node
+            self.tail = new_node
+        self._size += 1
+
+    def prepend(self, value: Any) -> None:
+        new_node = Node(value)
+        if self.head is None:
+            self.head = new_node
+            self.tail = new_node
+        else:
+            new_node.next = self.head
+            self.head = new_node
+        self._size += 1
+
+    def insert(self, idx: int, value: Any) -> None:
+        if idx < 0 or idx > self._size:
+            raise IndexError("Индекс вне диапазона")
+
+        if idx == 0:
+            self.prepend(value)
+            return
+
+        if idx == self._size:
+            self.append(value)
+            return
+
+        new_node = Node(value)
+        current = self.head
+        for _ in range(idx - 1):
+            current = current.next
+
+        new_node.next = current.next
+        current.next = new_node
+        self._size += 1
+
+    def remove_at(self, idx: int) -> None:
+        if idx < 0 or idx >= self._size:
+            raise IndexError("Индекс вне диапазона")
+
+        if idx == 0:
+            self.head = self.head.next
+            if self.head is None:
+                self.tail = None
+            self._size -= 1
+            return
+
+        current = self.head
+        for _ in range(idx - 1):
+            current = current.next
+
+        node_to_remove = current.next
+        current.next = node_to_remove.next
+
+        if node_to_remove == self.tail:
+            self.tail = current
+
+        self._size -= 1
+
+    def remove(self, value: Any) -> None:
+        if self.head is None:
+            return  # Список пуст
+
+        if self.head.value == value:
+            self.head = self.head.next
+            if self.head is None:
+                self.tail = None
+            self._size -= 1
+            return
+
+        current = self.head
+        while current.next is not None and current.next.value != value:
+            current = current.next
+
+        if current.next is not None:
+            node_to_remove = current.next
+            current.next = node_to_remove.next
+
+            if node_to_remove == self.tail:
+                self.tail = current
+
+            self._size -= 1
+
+    def __iter__(self):
+        current = self.head
+        while current is not None:
+            yield current.value
+            current = current.next
+
+    def __len__(self) -> int:
+        return self._size
+
+    def __repr__(self) -> str:
+        values = list(self)
+        return f"SinglyLinkedList({values})"
+
+    def display(self) -> str:
+        if self.head is None:
+            return "None"
+
+        result = ""
+        current = self.head
+        while current is not None:
+            result += f"[{current.value}]"
+            if current.next is not None:
+                result += " -> "
+            else:
+                result += " -> None"
+            current = current.next
+        return result
+```
+
+![Картинка 3](./images/lab_10/sll_demo.png)
+
+### Test
+
+![Картинка 4](./images/lab_10/test.png)
